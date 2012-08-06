@@ -13,7 +13,7 @@ Teaching these key principles will give the kids an excellent platform for progr
 more advanced languages such as python, java etc.
 
 This course will utilise the following languages/technologies
-* HTML
+* HTML / HTML5
 * CSS
 * JavaScript
 * Node.js
