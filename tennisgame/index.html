@@ -3,33 +3,32 @@
 	<head>
 		<title>CoderDojo Tennis Game</title>
 		<link rel="stylesheet" type="text/css" href="style.css"/>
-		<!-- New -->
-		<script type="text/javascript" src="tennis.js"></script>
+		<script src="http://bit.ly/google-jqueryjs"></script>
+		<script type="text/javascript" src="tennis.sample.js"></script>
 	</head>
 	<body>
 		<h1>CoderDojo Tennis Club</h1>
 		
+		<div id="controls">
+			<button onClick="tennisGame.start()">Start Game</button>
+		</div>
+		
 		<div id="tenniscourt">
-			<!-- New -->
 			<div id="racketLeft" class="racket">	
 					<img src="racket.png"/>
 				</div>
 			<div id="tramlines">
 				<div id="front">
-					<!-- New -->
 					<div id="net">
 					</div>
-					<!-- New -->
 					<div id="serviceLines">
 					</div>
 				</div>	
-			<!-- New -->
 			<div id="racketRight" class="racket">	
 					<img src="racket.png"/>
 				</div>
 			</div>
 			
-			<!-- New -->
 			<div id="ball" class="ball">	
 					<img src="coder.png"/>
 				</div>
@@ -43,12 +42,12 @@
 				<td>Score</td>
 			</thead>
 			<tr>
-				<td>Andrew Murray</td>
-				<td/>
+				<td id="player1Name">Player 1</td>
+				<td id="player1Score">0</td>
 			</tr>
 			<tr>
-				<td>Noel King</td>
-				<td/>
+				<td id="player2Name">Player 2</td>
+				<td id="player2Score">0</td>
 			</tr>
 		</table>
 		

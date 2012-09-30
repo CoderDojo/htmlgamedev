@@ -94,3 +94,8 @@ td {
 div#ball {
 	width: 30px;
 }
+
+div#controls {
+	width: 75px;
+	margin:auto;
+}
