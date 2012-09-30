@@ -45,7 +45,7 @@ var tennisGame = {
 	
 	moveRacket: function(racket, dTop) {
 		newtop = racket.top + dTop;
-		if(newtop >= 0) {
+		if(newtop >= 0 && newtop <= 440) {
 			$(racket.id).css('top', newtop + "px");
 			racket.top = newtop;
 			return true;
