@@ -1,0 +1,101 @@
+body {
+	background-color: lightblue;
+}
+
+h1 {
+	text-align: center;
+	color: gray;
+}
+
+div#tenniscourt {
+	position: relative;
+	z-index: -100;
+	background-color: green;
+	border: 5px solid white;
+	width: 800px;
+	height: 400px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 50px;
+	
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+div#tramlines {
+	border-top: 3px solid white;
+	border-bottom: 3px solid white;
+	height: 100%;
+}
+
+div#front {	
+	height: 100%;
+	z-index: 10;
+	margin-left:auto;
+	margin-right: auto;
+	width: 400px;
+	border-left: 2px solid white;
+	border-right: 2px solid white;
+}
+
+div.racket {
+	position: absolute;
+	width: 50px;
+}
+
+div#racketLeft {
+	top: 0px;
+}
+
+div#racketRight {
+	bottom: 0px;
+	right: 0px;
+}
+
+img {
+	width: 100%;
+}
+
+div#net {
+	position: absolute;
+	height: 110%;
+	width: 25%;
+	border-right: solid 8px white;
+	margin-bottom: -80px;
+	margin-top: -80px;	
+}
+
+div#serviceLines {
+	padding-top: 50%;
+	border-bottom: 3px solid white;
+}
+
+thead {
+	font-weight: bold;
+	text-align: center;
+}
+
+table {
+	margin-top: 50px;
+	width: 400px;
+	margin-right: auto;
+	margin-left: auto;
+	border-collapse:collapse;
+}
+
+td {
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
+	font-size: 25px;d
+	margin: 0px;
+	color: navy;
+}
+
+div#ball {
+	width: 30px;
+}
+
+div#controls {
+	width: 75px;
+	margin:auto;
+}
