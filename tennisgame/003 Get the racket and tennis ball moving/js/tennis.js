@@ -85,6 +85,8 @@ function intro() {
       document.getElementById(game.ball.id).style.display = "none";
       document.getElementById(game.computer.id+"Score").style.display = "none";
       document.getElementById(game.player.id+"Score").style.display = "none";
+      document.getElementById(game.computer.id).style.display = "none";
+      document.getElementById(game.player.id).style.display = "none";
 		}
 		else {
 			game.pause = false;
@@ -93,6 +95,8 @@ function intro() {
       document.getElementById(game.ball.id).style.display = "block";
       document.getElementById(game.computer.id+"Score").style.display = "block";
       document.getElementById(game.player.id+"Score").style.display = "block";
+      document.getElementById(game.computer.id).style.display = "block";
+      document.getElementById(game.player.id).style.display = "block";
 		}
 	}
 }
