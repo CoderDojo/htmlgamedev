@@ -18,7 +18,7 @@ function init() {
         name: "computer",
     		id: "computer",
     		score: 0,
-        speed: 2,
+        speed: 5,
       },
         ball: {
             id: "ball",
