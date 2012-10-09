@@ -57,11 +57,9 @@ function update() {
 		gameTime = 0;
 
 	moveAmount = gameTime > 0 ? gameTime / 50 : 1;
-  console.log(moveAmount);
   if (!game.pause) {
     if(document.getElementById(game.computer.id).offsetTop < document.getElementById(game.ball.id).offsetTop) {
       document.getElementById(game.computer.id).style.top = document.getElementById(game.computer.id).offsetTop + (game.computer.speed * moveAmount) + "px";
-      console.log(document.getElementById(game.computer.id).offsetTop);
     }
   }
   
@@ -72,10 +70,11 @@ function update() {
 function intro() {
 	var playButton = document.getElementById('playButton');
 	playButton.onclick = function() {
-		document.getElementById('titleScreen').style.display = "none";
-		document.getElementById('playScreen').style.display = "block";
-		init();
-	}
+		document.getElementById('titleScreen').className = "";
+    setTimeout("document.getElementById('titleScreen').style.display = \"none\"", 500);
+    setTimeout("document.getElementById('playScreen').style.display = \"block\"", 700);
+	  setTimeout("init()",700)
+  }
 
 	var pauseButton = document.getElementById('pauseButton');
 	pauseButton.onclick = function() {

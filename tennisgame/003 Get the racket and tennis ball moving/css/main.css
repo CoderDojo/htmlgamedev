@@ -93,12 +93,21 @@ body
 	border-radius: 10px;
 	webkit-border-radius: 10px;
 	moz-border-radius: 10px;
-	background: rgba(0,0,0,.5)
+	background: rgba(0,0,0,.5);
+  display: block;
+  -webkit-transition: opacity 1s ease-out;
+  opacity: 0;
+  overflow: hidden;
+}
+
+#titleScreen.active {
+  opacity: 1;
+  height: auto;
 }
 
 #playScreen
 {
-	display: none
+  display: none;
 }
 
 #court
