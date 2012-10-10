@@ -1,56 +1,41 @@
+<!DOCTYPE html>
 <html>
-	
-	<head>
-		<title>CoderDojo Tennis Game</title>
-		<link rel="stylesheet" type="text/css" href="style.css"/>
-		<script src="http://bit.ly/google-jqueryjs"></script>
-		<script type="text/javascript" src="tennis.js"></script>
-	</head>
-	<body>
-		<h1>CoderDojo Tennis Club</h1>
-		
-		<div id="controls">
-			<button onClick="tennisGame.start()">Start Game</button>
-		</div>
-		
-		<div id="tenniscourt">
-			<div id="racketLeft" class="racket">	
-					<img src="racket.png"/>
-				</div>
-			<div id="tramlines">
-				<div id="front">
-					<div id="net">
-					</div>
-					<div id="serviceLines">
-					</div>
-				</div>	
-			<div id="racketRight" class="racket">	
-					<img src="racket.png"/>
-				</div>
-			</div>
-			
-			<div id="ball" class="ball">	
-					<img src="coder.png"/>
-				</div>
-			</div>
-			
-				
-		</div>
-		<table>
-			<thead>
-				<td>Player</td>
-				<td>Score</td>
-			</thead>
-			<tr>
-				<td id="player1Name">Player 1</td>
-				<td id="player1Score">0</td>
-			</tr>
-			<tr>
-				<td id="player2Name">Player 2</td>
-				<td id="player2Score">0</td>
-			</tr>
-		</table>
-		
-	</body> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Tennis | Coderdojo DCU</title>
+        <meta name="description" content="Tennis Game for Coderdojo DCU">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
 
+	<body>
+        <div id="gamediv">
+            <div id="titleScreen" class="active">
+                <h1>Tennis</h1>
+                <p>This game uses some of the new features of HTML5 along with JavaScript.</p>
+                <p>To play this game you need a modern web browser with support for HTML5</p>
+                <p>Made by Coderdojo DCU</p>
+                <button id="playButton">Play!</button>
+            </div>
+            <div id="playScreen">
+                <div id="court">
+                    <div id="computer"></div>
+                    <div id="player"></div>
+                    <div id="ball"></div>
+                    <div id="servicecourt">
+                        <div id="centerserviceline"></div>
+                    </div>
+                </div>
+                <div id="net"></div>
+                <div id="computerScore">0</div>
+                <div id="playerScore">0</div>
+                <div id="ingamebuttons">
+                    <button id="pauseButton">Pause</button>
+                </div>
+                <div id="pauseText">Paused</div>
+            </div>
+        </div>
+        <script src="js/tennis.js"></script>
+	</body> 
 </html>
