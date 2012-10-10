@@ -1,8 +1,6 @@
 /*
-  Tennis game
-
-	Version: 0.0.1
-  
+    Tennis game
+    Version: 0.0.1
 */
 
 var game;
@@ -59,9 +57,10 @@ function update() {
     
     moveAmount = gameTime > 0 ? gameTime / 50 : 1;
     if (!game.pause) {
-        if (document.getElementById(game.computer.id).offsetTop < document.getElementById(game.ball.id).offsetTop) {
+        if (document.getElementById(game.computer.id).offsetTop + 120 < document.getElementById(game.ball.id).offsetTop)
             document.getElementById(game.computer.id).style.top = document.getElementById(game.computer.id).offsetTop + (game.computer.speed * moveAmount) + "px";
-        }
+        else if (document.getElementById(game.computer.id).offsetTop - 120 > document.getElementById(game.ball.id).offsetTop)
+            document.getElementById(game.computer.id).style.top = document.getElementById(game.computer.id).offsetTop - (game.computer.speed * moveAmount) + "px";
     }
     
     setTimeout(update, 1000 / 30);
