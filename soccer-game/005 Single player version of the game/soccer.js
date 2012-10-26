@@ -40,6 +40,13 @@ var rooney;
 var rooneyKick;
 var rooneyCelebrating;
 
+
+//var scores
+var keeperScore = 0;
+var playerScore = 0;
+var keeperScoreHtml;
+var playerScoreHtml;
+
 function setup() {
 
 	//get the variables required from the HTML
@@ -55,7 +62,8 @@ function setup() {
 	rooneyKick = document.getElementById("rooneyKick");
 	rooneyCelebrating = document.getElementById("rooneyCelebrate");
 	goalWidthDiv = document.getElementById("goalWidth");
-	
+	playerScoreHtml = document.getElementById("playerScore");
+	keeperScoreHtml = document.getElementById("computerScore");
   	goalWidth=400;
   	
   	commence();
@@ -195,6 +203,7 @@ function keeperSave() {
 		
 		if(isGoal(ballLeft, ballRight, keeperLeft, keeperRight)) {
 			result.innerHTML='Saved';
+			keeperScore++;
 			commence();
 			
 		} else {
@@ -207,10 +216,11 @@ function keeperSave() {
 			}
 			startKeeper();
 			result.innerHTML='Goal';
+			playerScore++;
 			commenceCelebration();
 		}
 		shootInProgress = false;
-		
+		updateScore();
 		animator = setTimeout(gameStart,1000);
 }
 
@@ -219,4 +229,9 @@ function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
 			&& ballLeft <= keeperRight) ||
 			(ballRight >= keeperLeft 
 			&& ballRight <= keeperRight)
+}
+
+function updateScore() {
+	playerScoreHtml.innerHTML = playerScore;
+	keeperScoreHtml.innerHTML = keeperScore;
 }
