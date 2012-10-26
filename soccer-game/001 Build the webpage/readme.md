@@ -282,8 +282,7 @@ Style by tag name, ok lets see how we style every h1 tag with an id mainTitle
 <h1 id="mainTitle"> </h1>
 ````
 
-To style this tag h1 you can use simply use the tag name followed by
-`#` and the id value so its
+To style this tag h1 you can use simply use the tag name followed by a hash "#" and the id value so its
 
 ````css
 
