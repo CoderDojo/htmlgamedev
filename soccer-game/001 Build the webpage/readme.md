@@ -100,6 +100,7 @@ Lets get started on CSS, lets understand how the CSS maps from your html
 code to the style.  There is 3 key ways you can style elements
 
 __Style by tag name__
+
 Style by tag name, ok lets see how we style every h1 tag
 
 ````html
