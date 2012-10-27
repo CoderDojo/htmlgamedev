@@ -305,6 +305,7 @@ div#goal {
 	border-left: 6px solid white;
 	border-right: 6px solid white;
 }
+````
 
 Open the browser and lets see what you can see? probably nothing? 
 Any idea why? Its because our div does not have any size? So lets add
