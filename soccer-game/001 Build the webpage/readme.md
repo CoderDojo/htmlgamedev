@@ -26,8 +26,8 @@ Ok so lets get started.
 
 What is HTML
 -------------
-The language of the Internet Hyper Text Markup Language, every page you 
-see online uses HTML. This is possible as browsers like Firefox and Chrome 
+Its the language of the Internet, Hyper Text Markup Language is used by every page you 
+see online from facebook to google. This is possible as browsers like Firefox and Chrome 
 intrepret this language and displays your content.  You primary use HTML to add
 your text, images and layout.
 
@@ -157,3 +157,77 @@ should only ever be used ONCE on your page.  While class
 is there for styles you want to use more than once.
 
 
+Lets plant some grass
+-----------
+Anyone got any ideas how we are going to plant the grass on the screen?
+
+Well we are going to get the background setting for the webpage to handle
+this.  To set the background we need to style the body tagc
+
+````css
+body {
+	background: url(ground.gif);
+	margin: 0px;
+	color: green;
+	padding: 0px;
+}
+````
+
+Add the sky
+-----------
+Lets add the sky to our page?  Anyone got any idea how we are going 
+to do this?
+
+Well the answer is by a div
+
+````html
+<div id="sky">
+</div>
+````
+Hey look here we are following our most important rule, for every tag
+we open we close.
+
+````css
+div#sky {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 200px;
+	background: skyblue;
+	border-bottom: 1px solid white;	
+	z-index: -100px;
+}
+````
+
+Build the goal posts
+-----------
+Lets build the goal posts.
+
+````html
+<!-- Shoot area -->
+<div id="shootArea">
+			<div id="goal">
+			</div>
+</div>
+````
+
+````css
+div#goal {
+	position: absolute;
+	left: 50px;
+	width: 350px;
+	top: 50px;
+	height: 150px;
+	border-top: 6px solid white;
+	border-left: 6px solid white;
+	border-right: 6px solid white;
+}
+
+div#shootArea {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 350px;
+}
+````

@@ -1,8 +1,7 @@
 body {
-	background: url(ground.gif);;
-	position: relative;
+	background: url(ground.gif);
 	margin: 0px;
-	color: black;
+	color: green;
 	padding: 0px;
 }
 
@@ -14,7 +13,7 @@ div#sky {
 	height: 200px;
 	background: skyblue;
 	border-bottom: 1px solid white;	
-	z-index: -1000px;
+	z-index: -100px;
 }
 
 div#goal {
@@ -57,9 +56,4 @@ div#goalOutline {
 	border-left: 8px solid white;
 	border-right: 8px solid white;
 	border-bottom: 8px solid white;
-}
-
-h3 {
-	margin: 0px;
-	font-size: 25px;
 }
