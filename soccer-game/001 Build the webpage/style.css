@@ -34,30 +34,6 @@ div#shootArea {
 	width: 350px;
 }
 
-
-div#penaltySpot {
-	position: absolute;
-	-moz-border-radius: 25px;
-	border-radius: 25px;
-	background-color: white;
-	height: 50px;
-	width: 50px;
-	top: 530px;
-	border: 2px solid black;
-	z-index: -100px;
-	margin-left: 200px;
-}
-
-div#goalOutline {
-	position: absolute;
-	top: 200px;
-	height: 200px;
-	width: 500px;
-	border-left: 8px solid white;
-	border-right: 8px solid white;
-	border-bottom: 8px solid white;
-}
-
 div#keeper {
 	position: absolute;
 	margin-left: 2px;
