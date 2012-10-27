@@ -19,8 +19,7 @@ Game aim
 * Background
 * Sky
 * Goal posts
-* Goal box
-* Penalty spot
+* Keeper
 
 Ok so lets get started.
 
