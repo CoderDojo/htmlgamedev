@@ -187,22 +187,78 @@ Well the answer is by a div
 Hey look here we are following our most important rule, for every tag
 we open we close.
 
+Ok what color do you want your sky to be? I went for skyblue.  To
+set the background color you will need to set this in your css using 
+the backgroud property.  
+__Please ensure you close the line with a semicolan;__
+
+````css
+div#sky {
+	background: skyblue;
+}
+````
+
+If you view your page you will not see the sky, this is because you 
+have not set the size of your div.  So lets go and set the width
+and height.  We are setting the height to 200px and the width to 100%.
+
+The width of 100% should take up the full screen width.  Now go back and 
+check out in your browser.  You should now see you sky
+
+
+````css
+div#sky {
+	
+	width: 100%;
+	height: 200px;
+
+	background: skyblue;
+}
+````
+
+How ever there is a problem as you sky does not touch the top of
+browser and you can still see the grass in ares you dont want grass (i.e.
+in the sky).  We need to position the sky correctly.
+
+To start we need to set the position, first we will use the position
+css property to decide the type of positioning, in this scenario we 
+are going to use absolute.
+
+### Position absolute
+This position is set to an exact measure position of the browser and 
+will not move.
+
+
+### Position relative
+This position is relavite to the element its inside.  
+
+Here we are setting the sky to start up the top right of the screen, with
+left and top 0px.
+
 ````css
 div#sky {
 	position: absolute;
 	top: 0px;
 	left: 0px;
+	z-index: -100px;
+
+
 	width: 100%;
 	height: 200px;
 	background: skyblue;
 	border-bottom: 1px solid white;	
-	z-index: -100px;
 }
 ````
+We are setting the border on the bottom here to have a small sepration
+between sky and grass.
 
 Build the goal posts
 -----------
-Lets build the goal posts.
+Lets build the goal posts.  To create the goals we will need to create
+two divs, the first one shootArea will create a center div on page
+where the goal, keeper and penalty spot will live. 
+
+Inside the shootArea the first div we will add is the goal div.
 
 ````html
 <!-- Shoot area -->
@@ -211,19 +267,22 @@ Lets build the goal posts.
 			</div>
 </div>
 ````
+  
+We will first have to style to shootArea to position it in the centre.
+To do this we will give we will use the margin-left and margin-right 
+properties.  To start we will set the position to relative.
+
+To centre the shootArea on screen (because the goals are alway in 
+middle of of pitch!).  We are first going to set the width of 350, 
+then setting the margin-left and margin-right to auto.  Auto will decide
+the margin based on the screen size, so should center this div.
+
+### margin
+Does anyone remember what the margin property does in CSS? It adds
+spacing to the outside of the element, so here the space outside 
+the left and right of shootArea will be increased.
 
 ````css
-div#goal {
-	position: absolute;
-	left: 50px;
-	width: 350px;
-	top: 50px;
-	height: 150px;
-	border-top: 6px solid white;
-	border-left: 6px solid white;
-	border-right: 6px solid white;
-}
-
 div#shootArea {
 	position: relative;
 	margin-left: auto;
@@ -231,3 +290,98 @@ div#shootArea {
 	width: 350px;
 }
 ````
+
+There is some really missing from out football game? Well its the 
+goal posts.  As you have already created the div style we now need
+ to style it so go to your style.css file.  Can you think of a CSS property
+ that will style our goal posts?  
+ 
+Borders! How about we style border left, right and top? We will give 
+them a size of 6px so they are big enough ont he screen.
+
+````css
+div#goal {
+	border-top: 6px solid white;
+	border-left: 6px solid white;
+	border-right: 6px solid white;
+}
+
+Open the browser and lets see what you can see? probably nothing? 
+Any idea why? Its because our div does not have any size? So lets add
+the height and width to the style.
+
+````css
+div#goal {
+	
+	width: 350px;
+	height: 150px;
+
+	border-top: 6px solid white;
+	border-left: 6px solid white;
+	border-right: 6px solid white;
+}
+````
+
+Now refresh this in your browser and see how you are getting on?  The 
+position is probably not right? So lets set the position, left and top
+until we are happy with the position.  Change the number values for 
+top and left and see your goal posts move.
+
+````css
+div#goal {
+	position: absolute;
+	left: 50px;
+	top: 50px;
+	
+	width: 350px;
+	height: 150px;
+
+	border-top: 6px solid white;
+	border-left: 6px solid white;
+	border-right: 6px solid white;
+}
+````
+
+Add the keeper
+-----------
+Time to put the goal keeper in the goal, to do this you need to use
+a new tag for image call img and link the Keeper image.  As the goal 
+keeper is in goal we are going to put him inside the goal div! So create
+a new div with an id keeper and we will add the img tag inside it.
+
+````html
+			<div id="goal">
+				<div id="keeper">
+					<img src="Keeper.png"/>
+				</div>
+			</div>
+````
+The img tag takes in one key property __src__, this property links
+the image tag to your file, so will you will need to add the exact
+name of your image including the type here.  __PLEASE ENSURE ITS THE
+SAME CASE, SO IF THERE IS CAPITIALS IN THE NAME THEY MUST BE ADDED
+TO SRC__. You will also need to ensure Keeper.png is in the same folder
+as your webpage.    
+
+To enable the div control the sizes the webpage we will set the size of
+every image to 100%;
+
+````css
+img {
+	width: 100%;
+}
+````
+
+Now we just need to style the div, lets set the position to relative and you
+can play with the top value until the goals sits correctly on the grass.
+
+````css
+div#keeper {
+	position: relative;
+	top: 60px;
+}
+````
+
+Conclusion
+------------
+Hope you guys enjoyed the start our the games course.

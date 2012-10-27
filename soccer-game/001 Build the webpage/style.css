@@ -57,3 +57,10 @@ div#goalOutline {
 	border-right: 8px solid white;
 	border-bottom: 8px solid white;
 }
+
+div#keeper {
+	position: absolute;
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-bottom: -10px;
+}
