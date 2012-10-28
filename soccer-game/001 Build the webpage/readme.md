@@ -385,4 +385,4 @@ div#keeper {
 
 Conclusion
 ------------
-Hope you guys enjoyed the start our the games course.
+Hope you guys enjoyed the start of our games course.
