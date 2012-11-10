@@ -75,7 +75,6 @@ __Question Time__
 * Give us an z-index value for the sky?
 * Give us an z-index value for the goalie?
 
-````
 
 Introduction to JavaScript
 -------------
