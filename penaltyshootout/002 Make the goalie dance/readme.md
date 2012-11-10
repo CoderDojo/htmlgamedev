@@ -18,8 +18,7 @@ Aim
 * Create the goal box
 * Show an action on load of page
 * Time to make the goalie dance
-* Introduce if logic
-* Introduce recursion
+
 
 
 Game aim
@@ -419,8 +418,66 @@ keeper = $("#keeper");
 ````
 
 The first time we define a variable use the **var** word but **never**
-put that in front of the keeper variable again.
+put that in front of the keeper variable again.  Add this to the code 
+inside the setup function
 
+````javascript
+function setup() {
+	//get the variables required from the HTML
+	keeper = $("#keeper");	
+}
+````
+
+#### Lets make the goalie dance let
+
+To make the goalie move left there we have a javascript function called
+css which gives us access to the CSS for that HTML object in our
+case the keeper div.  Once we have the keeper div we want to set 
+the left position to move 100px.  
+
+To call a function we 
+* Add a dot after our variable name = **keeper.**
+* Add the function name css = **keeper.css**
+* Now add the brackets and semi colon = **keeper.css();**
+* Add the parameters to move left - **keeper.css('left','100px');**
+
+The output should look like this
+
+````javascript
+keeper.css('left', '100px');
+````
+
+You can now add this to the setup method below where you added the
+keeper variable 
+
+````javascript
+function setup() {
+	//get the variables required from the HTML
+	keeper = $("#keeper");	
+	
+	keeper.css('left', '100px');
+}
+````
+
+
+Refresh your page and see what happened, congratulations the keeper
+danced.
 
 Conclusion
 ------------
+
+Questions
+* What was the z-index used for?
+* Why did we put a small white line at the bottom of the sky?
+* What is JavaScript?
+* What is JQuery?
+* What is a variable?
+* How do you write a variable?
+* What is a function?
+* How do you write a function?
+* Why did we wait for the page to load before calling a function?
+* What was the code which waited for the page to load before calling the function?
+* How did we make the goal posts higher?
+* Where did we define the keeper variable and how did we do it?
+* How did we get the keeper from the HTML page? What was the code?
+* How did we get the keeper to move left?
