@@ -177,8 +177,14 @@ function setup() {
 ````
 
 Now refresh your page and see if it your message appears?  
-Hopefully it does not appear as we have not called it.
+Hopefully it does not appear as we have not called it.  You can remove
+the alert call now as we wont need it in the real game.
 
+````javascript
+function setup() {
+
+}
+````
 
 Link this function to your page load
 -------------
