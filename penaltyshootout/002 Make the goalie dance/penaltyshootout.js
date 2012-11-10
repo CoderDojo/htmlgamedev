@@ -12,11 +12,10 @@ function setup() {
 	//get the variables required from the HTML
 	keeper = $("#keeper");
   	goalWidth=400;
-  	commence();  	
+  	commenceGame();  	
 }
 
-
-function commence() {
+function commenceGame() {
   	startKeeper();
 }
 

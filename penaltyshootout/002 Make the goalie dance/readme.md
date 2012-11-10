@@ -14,8 +14,8 @@ Aim
 * Introduce JavaScript
 * Introduce JQuery
 * How to link JavaScript to your webpage
+* Make the game more Irish
 * Create the goal box
-* Move the goals and add turn them into ? posts
 * Show an action on load of page
 * Time to make the goalie dance
 * Introduce if logic
@@ -121,7 +121,7 @@ Can you remember why we should do this?
 * So we can share our JavaScrit code with other webpages
 * Its all about reuse, reuse, reuse.  It makes development quicker
 
-To link the javascript to the page you use the ````html <script> ```` tag with the
+To link the javascript to the page you use the ```` <script> ```` tag with the
 following properties
 * type set to "text/javascript"
 * src to the name of your file, make sure the filename case is the same
@@ -134,6 +134,21 @@ Here is the example of our who pages linked
 	<script type="text/javascript" src="jquery.js"></script>
 </head>
 ````
+
+Variable
+-----
+A variable is something required by your program, but its only ever 
+one thing. Its an object (eg Ball) you need to use and change in your program.
+In javascript you create a variable using the **var** keyword
+followed by the name of your variable like so
+
+````javascript
+var keeper;
+````
+
+#### NOTE
+You variable name should explain what the variable is, so when you look
+at your code you know straight away what it is.
 
 Create your first function
 ----
@@ -153,7 +168,259 @@ function setup() {
 }
 ````
 
+So lets add our first JavaScript function, how about we say something
+when the webpage loads like "My Webpage is Ready"
+
+````javascript
+function setup() {
+	alert("My WebPage Is Ready");
+}
+````
+
+Now refresh your page and see if it your message appears?  
+Hopefully it does not appear as we have not called it.
+
+
+Link this function to your page load
+-------------
+Lets call this function.  When the webpage is load and the goal is built the goalie is ready
+we want to load the page so we can use the goalie.  If we did
+not wait for the page to load our goalie image may not be available
+yet as the browser has not got to that line of code.  So would cause
+an error.
+
+To tell the browser to call a function when the page is finished loading
+we put the **window.onload=<OURFUNCTIONNAME>;** on top of our JavaScript
+file.
+
+````javascript
+window.onload=setup;
+
+function setup() {
+	alert("My WebPage Is Ready");
+}
+````
+Here we can see you are calling the setup function you just created and 
+now what happens on the refresh. Your message should now appear.
+
+We will come back to the JavaScipt later, we are going to build more of
+our football pitch first and add our surprise.
+
+Celebration Time
+--------
+Ok you have just created and called your first function, this is a major
+step in your programming adventure, **big round of applause**, **YAHOO**, **YAHOO**.
+**GO ON** Remember the function rules and life is going to be easy from here.
+
+
+Make the game more Irish
+-------------------
+
+How about we make this game a little more Irish, lets turn it into a 
+gaelic penalty shoot out?  
+
+To get started we are going to add a new div around the goal so we 
+can have tall posts. Can you create a new div just outside the div with
+id goal, this new div will have an id of **goalPosts**
+
+Here you can see our new goalPosts div inside the shootArea and outside
+the goal div, this will enable us to add higher posts now
+
+````html
+<!-- Shoot area -->
+		<div id="shootArea">	
+			<div id="goalPosts">
+				<div id="goal">
+					<div id="keeper">
+						<img src="Keeper.png"/>
+					</div>
+				</div>
+			</div>
+		</div>
+````
+
+Lets style this new posts 
+* Set the width
+* Position from top
+* Their height
+* Left and right border which will be the posts
+
+````css
+
+div#goalPosts {
+	left: 50px;
+	width: 350px;
+	top: 20px;
+	height: 225px;
+	border-left: 6px solid white;
+	border-right: 6px solid white;
+}
+
+````
+
+Now take a look at your webpage you should have two nice big posts there
+now, but unfortunately the goal does not look right, so we need to
+change the goal we built last week.
+
+We need to change our current goal style can you
+* Remove left and right borders
+* Change position to relative
+* Change top to 75px
+* Change height to 120px
+* Change width to 100%
+
+````css
+div#goal {
+	position: absolute;
+	left: 50px;
+	width: 350px;
+	top: 50px;
+	height: 150px;
+	border-top: 6px solid white;
+	border-left: 6px solid white;
+	border-right: 6px solid white;
+}
+````
+
+The goal style should now look like this
+
+````css
+div#goal {
+	position: relative;
+	top: 75px;
+	height: 120px;
+	border-top: 6px solid white;
+	width: 100%;
+}
+````
+
+Build the pitch
+------------------
+
+Its time to get the line marker out and draw the lines on the pitch,
+for this part of the game development you are now the grounds keeper
+@ CoderDojo Arena.
+
+### Draw the end touch line
+
+To get started create a new div below your shootArea div, give this div
+an id pitch
+
+````html
+		<div id="pitch">
+			
+		</div>
+
+````
+
+Ok lets style the pitch div, can you let us know how you would add
+the touch line to your CSS?
+
+Ok we are going to need to 
+* Set the width to 100% (full screen width)
+* Set the position to relative
+* Draw the touch line using the top border
+
+````css
+div#pitch {
+	position: relative;
+	width: 100%;
+	border-top: 3px solid white;
+}
+````
+
+### Draw the goal box
+
+We all see the small box just outside the goal and honestly dont know
+if anyone know why its there? Do you know, good question to ask
+as I dont have a clue.
+
+So anyone got any idea how we going to add this box? Lets use a div with
+id keepersBox, this box is inside your pitch div so shown below
+
+````html
+	
+	<div id="pitch">
+			<div id="keepersBox">
+			</div>
+		</div>
+				
+````
+
+Any idea how we are going to style this box?    
+* Add the left, right and bottom borders
+
+Now refresh your browser and see how it looks
+* Add the top 
+* Height of the box
+* And it width (Remember this box is wider than goal)
+
+````css
+
+div#keepersBox {
+	border-left: 6px solid white;
+	border-right: 6px solid white;
+	border-bottom: 6px solid white;
+	
+	top: 0px;
+	height: 150px;
+	width: 600px;
+	
+	margin-left: auto;
+	margin-right: auto;
+}
+````
+
+Create our keeper variables
+--------------------
+
+To get started we are going to need variables in our game, **Can
+anyone guess what variables we need?** To get started we are going
+to define
+* Keeper variable
+
+We need these to get the goalie moving, can everyone think why yet? 
+Key rules of adding variables
+* Start your variable with **var** then your variable name
+* Your variable name should represent what the variable is
+* Always add them to the top of your page
+* Always finish each variable with semicolon **;**
+
+````javascript
+window.onload=setup	
+
+//keeper variables
+var keeper;
+
+function setup() {
+}
+````
+
+Get the keeper image from your HTML page
+--------------------
+
+To use the goal keeper you need to get your code to take control of 
+the keeper div from your HTML page.  We are going to use JavaScript
+with JQuery to do this.
+
+### JQuery selectors
+JQuery selector works exactly the same as CSS so when we are looking
+for a HTML tag with an id we use the hash tag **#** and the id of the 
+html tag like so for the keeper ```` #keeper ````
+
+To call this selector in JQuery you need to use the dollar symbol
+ **$** so to access the keeper in JQuery will look like ```` $("#keeper") ````
+
+### To assign this to the variable keeper
+To make the var keeper equal the div on our webpage we need to
+
+````javascript
+keeper = $("#keeper");
+````
+
+The first time we define a variable use the **var** word but **never**
+put that in front of the keeper variable again.
+
 
 Conclusion
 ------------
-Hope you guys enjoyed the start of our games course.
