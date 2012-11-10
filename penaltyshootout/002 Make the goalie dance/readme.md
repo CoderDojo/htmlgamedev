@@ -54,6 +54,7 @@ div#sky {
 	background: skyblue;
 	
 }
+````
 
 One think we are going to have to think about is which image needs to be on top,
 lets think about this, if we dont consider the importance of image position
