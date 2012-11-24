@@ -10,6 +10,7 @@ Aim
 ---------
 * Start looking at logic with if statements
 * Continue our focus on functions
+* Introduction to Arrays
 * Add more variables
 
 
@@ -146,3 +147,4 @@ Questions
 * Explain how you write an if condition in code?
 * What is AND used for in if conditions?
 * What is OR used for in if conditions?
+* What number represents the first number in an array?

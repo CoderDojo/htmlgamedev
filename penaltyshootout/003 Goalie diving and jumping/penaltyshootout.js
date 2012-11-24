@@ -1,4 +1,4 @@
-window.onload=setup	
+window.onload=setup
 
 //keeper variables
 var keeper;
@@ -8,6 +8,13 @@ var goalWidth;
 var leftMovePixels=1;
 
 var moveAmount = 5;
+
+var jumpSequence = 40;
+var currentJumpSequence = 1;
+
+//new	
+var keeperPositions = ["0px","100px"];
+var keeperArrayPosition = 0;
 
 function setup() {
 
@@ -38,14 +45,37 @@ function startKeeper() {
 function moveKeeper() {
 	var currentPosition = parseInt(keeper.css('left'));
 	
-	if(currentPosition >= goalWidth
+	// new after show problem
+	var maxRightPosition = goalWidth - keeperWidth;
+	
+	if(currentPosition >= maxRightPosition
 		|| currentPosition < 0) {
 		moveAmount = moveAmount * -1;
 	}
 	
 	var newPosition = currentPosition + moveAmount;
 	keeper.css('left',newPosition+'px');
+	
+	jumpKeeper();
+	
 	setTimeout(moveKeeper, 2);
+}
+
+function jumpKeeper() {
+	
+	if(jumpSequence == currentJumpSequence) {
+		if(keeperArrayPosition == keeperPositions.length) {
+			keeperArrayPosition = 0;
+		}
+		
+		var newKeeperPosition = keeperPositions[keeperArrayPosition];
+		keeper.css('top',newKeeperPosition);
+	
+		keeperArrayPosition = keeperArrayPosition + 1;
+		currentJumpSequence = 0;
+	} else {
+		currentJumpSequence = currentJumpSequence +1;
+	}
 }
 
 
