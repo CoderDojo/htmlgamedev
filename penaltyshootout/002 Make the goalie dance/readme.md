@@ -469,6 +469,86 @@ function setup() {
 Refresh your page and see what happened, congratulations the keeper
 danced.
 
+
+#### Lets commence the game
+
+Ok to start the game we need to complete a couple of actions? How about we
+say these actions are
+* Setup the positions (eg Goalie)
+* Start the keeper moving
+
+As these are two actions we are going to functions for these, so lets create 
+our first function called commenceGame.  The aim of this function is
+to get our game into the correct mindset/state to start.  This function will
+look like so.
+
+````javascript
+function commenceGame() {
+
+}
+````
+
+Inside this function we will put our setup positions and start keeper 
+moving functions.  Refresh your screen and see what you think of your great
+work so far.
+
+#### Setup the positions (eg Goalie)
+
+Who things the goalie is in the wrong position? How about we start him in a 
+flying position. To get started create the setupHtmlPositions function.  
+
+````javascript
+function setupHtmlPositions() {
+	
+}
+````
+
+Now inside that function set the left and top position for the goal keeper. 
+To do this use our keeper variable, thanks to JQUERY there is a function
+available to style the keeper.  I hope every remembers how we style HTML?
+With CSS of course so helpfully the function provided by jquery to style 
+on our keeper is called css.  Inside this function we add two parameters
+the css property and value. So to set the left position to 0px, the paramater
+is 'left' and '0px', just like the CSS ```` left: 0px ````
+
+
+````javascript
+function setupHtmlPositions() {
+	keeper.css('top','0px');
+	keeper.css('left','0px');
+}
+````
+
+Now update the commerceGame function to call the setup positions
+
+````javascript
+function commenceGame() {
+	setupHtmlPositions();
+}
+
+//setupHtmlPositions
+function setupHtmlPositions() {
+	keeper.css('top','0px');
+	keeper.css('left','0px');
+}
+
+function startKeeper() {
+	//keeperWidth + 'px' = 150px
+	keeper.css('width',keeperWidth+'px');
+	keeper.show();
+	moveKeeper();
+}
+
+function moveKeeper() {
+	var currentPosition = parseInt(keeper.css('left'));
+	var newPosition = currentPosition + 5;
+	keeper.css('left',newPosition+'px');
+	setTimeout(moveKeeper, 2);
+}
+````
+
+
+
 Conclusion
 ------------
 
