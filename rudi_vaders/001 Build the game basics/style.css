@@ -1,4 +1,5 @@
 body {
+	background-image:url('sky.jpg');
     position: absolute;
 	margin: 0px;
 	padding: 0px;
@@ -7,22 +8,13 @@ body {
 	top: 0px;
 	left: 0px;
 	width: 100%;
-
-}
-div#alienArea {
-    background-image:url('sky.jpg');
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 700px;
 }
 
 img {
 	width: 100%;
 }
 
-div#alien1 {
+div#allien {
 	position: absolute;
 	left: 0px;
 	top: 0px;
@@ -30,16 +22,8 @@ div#alien1 {
 	height: 50px;
 	z-index:99;
 }
-div#alien1-water {
-	position: absolute;
-	left: 50px;
-	top: 40px;
-	width: 50px;
-	height: 50px;
-	z-index:-1;
-}
 
-div#alien2 {
+div#reggae {
 	position: absolute;
 	right: 100px;
 	top: 200px;
@@ -47,37 +31,13 @@ div#alien2 {
 	height: 70px;	
 	z-index:99;
 }
-div#alien2-water{
-	position: absolute;
-	right: 60px;
-	top: 300px;
-	width: 70px;
-	height: 70px;
-    z-index:-1;	
-}
-div#rudi-div{
+
+div#rudi{
 	position: absolute;
 	left: 750px;
-	bottom: -600px;
-	width: 50px;
+	bottom: 0px;
+	width: 150px;
 	height: 50px;
 	z-index:99;
 }
 
-div#rudi-bone-div{
-	position: absolute;
-	left: 750px;
-	bottom: -600px;
-	width: 50px;
-	height: 50px;
-	z-index:-1;
-}
-div#groundArea {
-    position: absolute;
-	bottom: 0px;
-	left: 0px;
-	width: 100%;
-	height: 450px;
-	background-color: green;
-	z-index:-99;
-}
