@@ -1,0 +1,237 @@
+html,button,input,select,textarea
+{
+	color: #222
+}
+
+body
+{
+	font-size: 16px;
+    font-family: sans-serif;
+	line-height: 1.4;
+	background: #ccc
+}
+
+h3.players {
+	font-size: 15px;
+	margin: 0px;
+	text-align: center;
+}
+
+h1 {
+	color: gray;
+	text-align: center;
+	padding-top: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.button,button,input[type="submit"],input[type="reset"],input[type="button"]
+{
+	background: #eee;
+	background: #eee -moz-linear-gradient(top,rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%);
+	background: #eee -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(255,255,255,.2)),color-stop(100%,rgba(0,0,0,.2)));
+	background: #eee -webkit-linear-gradient(top,rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%);
+	background: #eee -o-linear-gradient(top,rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%);
+	background: #eee -ms-linear-gradient(top,rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%);
+	background: #eee linear-gradient(top,rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%);
+	border: 1px solid #aaa;
+	border-top: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	color: #555;
+	display: inline-block;
+	font-weight: 700;
+	text-decoration: none;
+	text-shadow: 0 1px hsla(0,0,100%,.75);
+	cursor: pointer;
+	line-height: normal;
+	padding: 8px 10px
+}
+
+.button:hover,button:hover,input[type="submit"]:hover,input[type="reset"]:hover,input[type="button"]:hover
+{
+	color: #222;
+	background: #ddd;
+	background: #ddd -moz-linear-gradient(top,rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%);
+	background: #ddd -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(255,255,255,.3)),color-stop(100%,rgba(0,0,0,.3)));
+	background: #ddd -webkit-linear-gradient(top,rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%);
+	background: #ddd -o-linear-gradient(top,rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%);
+	background: #ddd -ms-linear-gradient(top,rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%);
+	background: #ddd linear-gradient(top,rgba(255,255,255,.3) 0%,rgba(0,0,0,.3) 100%);
+	border: 1px solid #888;
+	border-top: 1px solid #aaa;
+	border-left: 1px solid #aaa
+}
+
+.button:active,button:active,input[type="submit"]:active,input[type="reset"]:active,input[type="button"]:active
+{
+	border: 1px solid #666;
+	background: #ccc;
+	background: #ccc -moz-linear-gradient(top,rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%);
+	background: #ccc -webkit-gradient(linear,left top,left bottom,color-stop(0%,rgba(255,255,255,.35)),color-stop(100%,rgba(10,10,10,.4)));
+	background: #ccc -webkit-linear-gradient(top,rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%);
+	background: #ccc -o-linear-gradient(top,rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%);
+	background: #ccc -ms-linear-gradient(top,rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%);
+	background: #ccc linear-gradient(top,rgba(255,255,255,.35) 0%,rgba(10,10,10,.4) 100%)
+}
+
+.button.full-width,button.full-width,input[type="submit"].full-width,input[type="reset"].full-width,input[type="button"].full-width
+{
+	width: 100%;
+	padding-left: 0!important;
+	padding-right: 0!important;
+	text-align: center
+}
+
+#gamediv
+{
+	position: relative;
+	margin: 0 auto;
+	width: 800px;
+	height: 600px;
+	background: url(../img/ground.gif);
+	border: 5px solid #fff
+}
+
+#titleScreen {
+	border: 2px solid #fff;
+	padding: 15px;
+	margin: 125px auto;
+	width: 400px;
+	text-align: center;
+	color: #fff;
+	border-radius: 10px;
+	webkit-border-radius: 10px;
+	moz-border-radius: 10px;
+	background: rgba(0,0,0,.5);
+  	display: block;
+  	-webkit-transition: opacity 1s ease-out;
+  	opacity: 0;
+  	overflow: hidden;
+}
+
+#titleScreen.active {
+  opacity: 1;
+  height: auto;
+}
+
+#playScreen
+{
+  display: none;
+}
+
+#court
+{
+	position: absolute;
+	top: 60px;
+	bottom: 60px;
+	border-top: 3px solid #fff;
+	border-bottom: 3px solid #fff;
+	width: 100%
+}
+
+#servicecourt
+{
+	position: relative;
+	border-left: 3px solid #fff;
+	border-right: 3px solid #fff;
+	height: 100%;
+	width: 60%;
+	margin: 0 auto
+}
+
+#centerserviceline
+{
+	position: absolute;
+	height: 3px;
+	left: 0;
+	top: 235.5px;
+	width: 100%;
+	background: #FFF
+}
+
+#net
+{
+	position: absolute;
+	height: 100%;
+	border: 3px dashed #fff;
+	left: 397px
+}
+
+#player,#computer
+{
+	height: 150px;
+	width: 60px;
+	z-index: 100;
+}
+
+#player
+{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background: url(../img/racketplayer.png)
+}
+
+#computer
+{
+	position: absolute;
+	top: 210px;
+	left: 0px;
+	background: url(../img/racketcomputer.png)
+}
+
+#tennisball
+{
+	z-index: 1000;
+	position: absolute;
+	height: 32px;
+	width: 32px;
+	left: 0px;
+}
+
+img {
+	width: 100%;
+}
+
+#computerScore
+{
+	float: left;
+	text-align: right
+}
+
+#playerScore
+{
+	float: right;
+	text-align: left
+}
+
+#computerScore,#playerScore
+{
+	margin: 195px auto;
+	color: #FFF;
+	width: 40%;
+	opacity: .8;
+	font-size: 150px
+}
+
+#ingamebuttons
+{
+	position: absolute;
+	bottom: 15px;
+	left: 15px
+}
+
+#pauseText
+{
+	display: none;
+	position: absolute;
+	top: 200px;
+	left: 235px;
+	font-size: 100px;
+	color: #000;
+	text-align: center;
+	line-height: 0
+}
