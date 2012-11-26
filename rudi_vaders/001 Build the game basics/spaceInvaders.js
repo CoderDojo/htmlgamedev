@@ -1,4 +1,6 @@
+
 window.onload=setup	
+document.onkeydown = handleRudi;
 
 var reggaeBall;
 var allienBall;
@@ -25,6 +27,7 @@ function setup() {
 	setNewBallSize(allienBall);
 	
 	moveBalls();
+	bark();
 }
 
 
@@ -178,3 +181,52 @@ function getBallWidth(ball) {
 	var ballWidth = parseInt(ball.css('width')); 
 	return ballWidth;
 }
+
+
+//3 NEW BELOW ALL FUNCTION
+// DO IT FIRST WITHOUT MOVERACKET START WITH ALERT
+function handleRudi(e) {
+
+	var event = window.event ? window.event : e;
+	var keyCode = event.keyCode;
+
+	if(keyCode == 32) { // space bar
+		fire();
+	} else if(keyCode == 37) { // left arrow
+		moveRudiLeft();
+	} else if(keyCode == 39) { //right arrow
+		moveRudiRight();
+	} 
+}
+
+function moveRudiLeft() {
+	moveRudi(-20);
+}
+
+function moveRudiRight() {
+	moveRudi(20);
+}
+
+function moveRudi(moveAmount) {
+	var rudiCurrentPosition = parseInt(rudi.css('left'));
+	rudiCurrentPosition = rudiCurrentPosition + moveAmount;
+	
+	if(rudiCurrentPosition > screenWidth) {
+		rudi.css('left', '0px');
+	} else if(rudiCurrentPosition < 0) {
+		rudi.css('left',screenWidth +'px');
+	} else {
+		rudi.css('left',rudiCurrentPosition +'px');
+	}
+}
+
+function fire() {
+	bark();
+}
+
+function bark() {
+	var sound = $('<embed autoplay="true" height="0" width="0" />');
+	sound.attr('src', 'dog-bark1.mp3');
+	$('body').append(sound);
+}
+
