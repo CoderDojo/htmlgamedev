@@ -293,7 +293,7 @@ function clickPlay() {
 	setNewBallSize(allienBall);
 	reggaeBall.show();
 	allienBall.show();
-
+	bark();
 	score = 0;
 	updateScore(1000);	
 	moveBalls();
@@ -307,9 +307,84 @@ function clearText() {
 function fire() {
 
 	if(!boneInAction && isGameCommenced()) {
+		console.log('Bone not in action');
+		//boneInAction = true;
+		bark();
+		positionBone();
+		bone.show();
+		moveBone();
 		
 		boneInAction= true;
 	}
+}
+
+function positionBone() {
+	var rudiLeft = rudi.css('left');
+	var rudiTop = rudi.css('top');
+	bone.css('left', rudiLeft);
+  	bone.css('top', rudiTop);
+}
+
+function moveBone() {
+	var currentBoneTopPosition = parseInt(bone.css('top'));
+	
+	console.log('Move bone');
+	
+	if(isBonePassTopOfScreen(currentBoneTopPosition)) {
+		console.log('Top screen hit');
+		boneFinished();
+	} else if(isBallHit(reggaeBall)|| isBallHit(allienBall)) {
+		console.log('Ball hit');
+		updateScore(hitPoints);
+		boneFinished();
+	} else {
+		currentBoneTopPosition = currentBoneTopPosition - 5;
+		bone.css('top', currentBoneTopPosition+'px');
+		setTimeout(moveBone,1);
+	}
+}
+
+function isBallHit(ball) {
+	
+	if(ball.is(':visible')) {
+		var ballLeft = getBallLeftPosition(ball);
+		var ballTop = getBallTopPosition(ball);
+		var ballRight = ballLeft + getBallWidth(ball);
+ 		var ballBottom = ballTop + getBallWidth(ball);
+
+ 		var boneTop = parseInt(bone.css('top'));
+ 		var boneLeft = parseInt(bone.css('left'));
+	
+		console.log('Hit positions boneLeft ' + boneLeft + ' ballLeft ' + ballLeft 
+ 			+ ' ballRight ' +  ballRight + ' ballBottom ' + ballBottom 
+ 			+ ' ballTop ' + ballTop + ' boneTop ' + boneTop);
+	
+   		if(boneLeft >= ballLeft && boneLeft <= ballRight &&
+ 			boneTop >= ballTop && boneTop <= ballBottom) {
+
+ 			console.log('Ball hit boneLeft ' + boneLeft + ' ballLeft ' + ballLeft 
+ 			+ ' ballRight ' +  ballRight + ' ballBottom ' + ballBottom 
+ 			+ ' ballTop ' + ballTop + ' boneTop ' + boneTop);
+ 		
+ 			ball.hide();
+ 			return true;	
+ 		}
+ 	}
+	return false;
+}
+
+function boneFinished() {
+	console.log('Bone finished');
+	boneInAction = false;
+	bone.hide();
+	
+	if(isGameOver() ) {
+		showWelcome();
+		var currentHighScore = parseInt(highestScore.html());
+ 		if(currentHighScore < score) {
+			handleHighestScore();
+		}
+	}	
 }
 
 function handleHighestScore() {
@@ -323,5 +398,12 @@ function isBonePassTopOfScreen(currentBoneTopPosition) {
 		return true;
 	}
 	return false;
+}
+
+
+function bark() {
+	var sound = $('<embed autoplay="true" height="0" width="0" />');
+	sound.attr('src', 'dog-bark1.mp3');
+	$('body').append(sound);
 }
 
