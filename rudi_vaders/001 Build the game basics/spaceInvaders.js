@@ -85,6 +85,8 @@ function setupElementsFromHtml() {
 function setupHtmlPositions() {
 	var rudiTopPosition = screenHeight-100;
 	rudi.css('top', rudiTopPosition + 'px');
+	reggaeBall.css('left', '1000px');
+	allienBall.css('left','20px');
 	bone.hide();
 }
 

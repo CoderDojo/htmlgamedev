@@ -85,6 +85,8 @@ function setupElementsFromHtml() {
 function setupHtmlPositions() {
 	var rudiTopPosition = screenHeight-100;
 	rudi.css('top', rudiTopPosition + 'px');
+	reggaeBall.css('left', '1000px');
+	allienBall.css('left','20px');
 	bone.hide();
 }
 
@@ -152,7 +154,8 @@ function moveReggaeBall() {
 	if(reggaeBall.is(':visible')) {
 		var currentReggaeLeftPosition = getBallLeftPosition(reggaeBall);
 		var currentReggaeTopPosition = getBallTopPosition(reggaeBall);
-
+		console.log(currentReggaeLeftPosition);
+		
 		if(isBallOutSideScreenHorizontal(reggaeBall)) {
 			moveReggaeAmount = moveReggaeAmount * -1;
 			setNewBallSize(reggaeBall);
@@ -169,10 +172,10 @@ function moveReggaeBall() {
 			setNewBallSize(reggaeBall);
 			updateScore(wallBouncePoints);
 		} 
-
+		
 		currentReggaeLeftPosition = currentReggaeLeftPosition + moveReggaeAmount;
 		currentReggaeTopPosition = currentReggaeTopPosition + moveReggaeTop;
-		
+		console.log(currentReggaeLeftPosition);
 		moveBallLeft(reggaeBall, currentReggaeLeftPosition);
 		moveBallTop(reggaeBall, currentReggaeTopPosition);
 	}
@@ -212,7 +215,7 @@ function getBallTopPosition(ball) {
 	return parseInt(ball.css('top'));
 }
 
-function isBallOutSideScreenHorizontal(ball) {		
+function isBallOutSideScreenHorizontal(ball) {	
 	var ballLeftPosition = getBallLeftPosition(ball);
 	var ballMaxRightPosition = ballLeftPosition + getBallWidth(ball);
 	if(ballLeftPosition < 0 ||
@@ -257,7 +260,6 @@ function handleRudi(e) {
 	var keyCode = event.keyCode;
 
 	if(keyCode == 32) { // space bar
-		console.log('Space bar hit');
 		fire();
 	} else if(keyCode == 37) { // left arrow
 		moveRudiLeft();
@@ -307,8 +309,7 @@ function clearText() {
 function fire() {
 
 	if(!boneInAction && isGameCommenced()) {
-		console.log('Bone not in action');
-		//boneInAction = true;
+
 		bark();
 		positionBone();
 		bone.show();
@@ -327,14 +328,10 @@ function positionBone() {
 
 function moveBone() {
 	var currentBoneTopPosition = parseInt(bone.css('top'));
-	
-	console.log('Move bone');
-	
+		
 	if(isBonePassTopOfScreen(currentBoneTopPosition)) {
-		console.log('Top screen hit');
 		boneFinished();
 	} else if(isBallHit(reggaeBall)|| isBallHit(allienBall)) {
-		console.log('Ball hit');
 		updateScore(hitPoints);
 		boneFinished();
 	} else {
@@ -355,17 +352,9 @@ function isBallHit(ball) {
  		var boneTop = parseInt(bone.css('top'));
  		var boneLeft = parseInt(bone.css('left'));
 	
-		console.log('Hit positions boneLeft ' + boneLeft + ' ballLeft ' + ballLeft 
- 			+ ' ballRight ' +  ballRight + ' ballBottom ' + ballBottom 
- 			+ ' ballTop ' + ballTop + ' boneTop ' + boneTop);
-	
    		if(boneLeft >= ballLeft && boneLeft <= ballRight &&
  			boneTop >= ballTop && boneTop <= ballBottom) {
-
- 			console.log('Ball hit boneLeft ' + boneLeft + ' ballLeft ' + ballLeft 
- 			+ ' ballRight ' +  ballRight + ' ballBottom ' + ballBottom 
- 			+ ' ballTop ' + ballTop + ' boneTop ' + boneTop);
- 		
+	
  			ball.hide();
  			return true;	
  		}
@@ -374,7 +363,6 @@ function isBallHit(ball) {
 }
 
 function boneFinished() {
-	console.log('Bone finished');
 	boneInAction = false;
 	bone.hide();
 	
@@ -394,7 +382,6 @@ function handleHighestScore() {
 
 function isBonePassTopOfScreen(currentBoneTopPosition) {
 	if(currentBoneTopPosition < 0)  {
-		console.log("Bone at top of screen  " + currentBoneTopPosition);
 		return true;
 	}
 	return false;
