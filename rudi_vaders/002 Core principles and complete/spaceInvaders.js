@@ -112,15 +112,16 @@ function getNewBallAngle() {
 }
 
 function moveBalls() {
+	moveReggaeBall();
 	moveAllienBall();
-	moveReggaeBall()
 	
 	setTimeout(moveBalls,10);
 }
 
 function moveAllienBall() {
-
-	if(allienBall.is(':visible')) {
+	moveBall(allienBall, moveAllienAmount, moveAllienTop);
+	
+	/*if(allienBall.is(':visible')) {
 		var currentAllienLeftPosition = getBallLeftPosition(allienBall);
 		var currentAllienTopPosition = getBallTopPosition(allienBall);
 
@@ -146,6 +147,38 @@ function moveAllienBall() {
 		
 		moveBallLeft(allienBall, currentAllienLeftPosition);
 		moveBallTop(allienBall, currentAllienTopPosition);
+	}*/
+}
+
+
+function moveBall(ball, moveBallAmount, moveBallTop) {
+	
+	if(ball.is(':visible')) {
+		var currentBallLeftPosition = getBallLeftPosition(ball);
+		var currentBallTopPosition = getBallTopPosition(ball);
+
+		if(isBallOutSideScreenHorizontal(ball)) {
+			moveBallAmount = moveBallAmount * -1;
+			setNewBallSize(ball);
+			updateScore(wallBouncePoints);
+		} 
+		if(isBallOutSideScreenTop(ball)
+		  || isBallOutSideScreenBottom(ball)) {
+			
+			moveBallTop = getNewBallAngle();
+			
+			setNewBallSize(ball);
+			updateScore(wallBouncePoints);
+		} 
+		
+		if(isBallOutSideScreenBottom(ball)) {
+				moveBallTop = moveBallTop * -1;
+		}
+		
+		currentBallLeftPosition = currentBallLeftPosition + moveBallAmount;
+		currentBallTopPosition = currentBallTopPosition + moveBallTop;
+		moveBallLeft(ball, currentBallLeftPosition);
+		moveTop(ball, currentBallTopPosition);
 	}
 }
 
@@ -154,8 +187,7 @@ function moveReggaeBall() {
 	if(reggaeBall.is(':visible')) {
 		var currentReggaeLeftPosition = getBallLeftPosition(reggaeBall);
 		var currentReggaeTopPosition = getBallTopPosition(reggaeBall);
-		console.log(currentReggaeLeftPosition);
-		
+
 		if(isBallOutSideScreenHorizontal(reggaeBall)) {
 			moveReggaeAmount = moveReggaeAmount * -1;
 			setNewBallSize(reggaeBall);
@@ -164,6 +196,7 @@ function moveReggaeBall() {
 	
 		if(isBallOutSideScreenTop(reggaeBall)
 		  || isBallOutSideScreenBottom(reggaeBall)) {
+		  
 			moveReggaeTop = getNewBallAngle();
 		
 			if(isBallOutSideScreenBottom(reggaeBall)) {
@@ -172,14 +205,16 @@ function moveReggaeBall() {
 			setNewBallSize(reggaeBall);
 			updateScore(wallBouncePoints);
 		} 
-		
+
 		currentReggaeLeftPosition = currentReggaeLeftPosition + moveReggaeAmount;
 		currentReggaeTopPosition = currentReggaeTopPosition + moveReggaeTop;
-		console.log(currentReggaeLeftPosition);
+		
 		moveBallLeft(reggaeBall, currentReggaeLeftPosition);
 		moveBallTop(reggaeBall, currentReggaeTopPosition);
 	}
 }
+
+
 
 function isGameOver() {
 	if(reggaeBall.is(':visible') || allienBall.is(':visible')) {
@@ -202,6 +237,12 @@ function isGameCommenced() {
 function moveBallLeft(ball, moveAmount) {
 	ball.css('left',moveAmount  + 'px');
 }
+
+
+function moveTop(ball, moveAmount) {
+	ball.css('top',moveAmount + 'px');
+}
+
 
 function moveBallTop(ball, moveAmount) {
 	ball.css('top',moveAmount + 'px');
@@ -307,7 +348,6 @@ function clearText() {
 }
 
 function fire() {
-
 	if(!boneInAction && isGameCommenced()) {
 
 		bark();
