@@ -73,6 +73,7 @@ jquery.js just like you added christmas.js
 
 You will need to add jquery.js to your christmas folder from https://raw.github.com/CoderDojo/htmlgamedev/master/christmascard/jquery.js
 
+Now add it inside your head tags like below
 
 ````html
 <html>
