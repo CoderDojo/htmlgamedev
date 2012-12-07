@@ -89,3 +89,65 @@ Now add it inside your head tags like below
 	
 </html>
 ````
+
+## Add some festive colour
+
+Lets move to the style.css file and add some background color
+* Set the background-color to red
+* Set the margin and padding to 0px so there is not spacing issues
+with our inner divs
+
+````css
+body {
+	background-color: red;
+	margin: 0px;
+	padding: 0px;
+}
+````
+
+Now open index.html in your browser and look at your festive background
+
+## Add some snow to the ground
+
+Anyone got an idea how we going to add snow to the ground? We want a layer
+of snow where can building our christmas tree on.  You are right use 
+a div and place it at the bottom of the screen.  Add the div tag inside
+your body tag like so
+
+````html
+
+<div id="ground">
+		</div>
+
+````
+
+Now add the css to turn the ground white any idea what we need to add
+* Background color white
+* Position to the bottom
+* Height of 100px
+* Full width 
+* Small border on top
+
+````css
+div#ground {
+	position: absolute;
+	border-top: 1px solid black;
+	background-color: white;
+	height: 100px;
+	width: 100%;
+	bottom: 0px;
+	z-index: -100px;
+}
+````
+
+## Lets light up this party
+
+OK how about we add the christmas lights, check out the image file christmaslights.gif.  
+Can you create a div just inside your body tags and add the lights.
+
+````html
+<div id="christmaslights">
+			<img src="christmaslights.gif"/>
+		</div>
+````
+Now refresh your browser and the lights should be at the top of your page.
