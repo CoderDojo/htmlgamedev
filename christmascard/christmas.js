@@ -9,7 +9,7 @@ var sleigh;
 var present;
 
 var snow;
-var snowMargin = 50;
+var snowMargin = 30;
 
 var snowFallLenght = 0;
 
@@ -21,12 +21,20 @@ function setup() {
 }
 
 function start() {
+	$('#leaves').html('');
 	snowFallLenght=0;
+	rowWidth=5;
 	setupSleigh();
 	setupPresent();
 	snowFall();
 	flySleighAcrossSky();
 	buildChristmasTree();
+}
+
+
+function setupScreenDimensions() {
+	screenWidth = $(window).width();
+	screenHeigth = $(window).height();
 }
 
 function setupSnow() {
@@ -42,6 +50,9 @@ function setupSleigh() {
 
 function setupPresent() {
 	present = $('#present');
+	present.css('top','250px');
+	present.css('width','10px');
+	present.css('height','10px');
 	present.hide();
 }
 
@@ -66,8 +77,12 @@ function dropPresent() {
 	 present.css('top', currentPresentTop + 'px');
 	 
 	 var bottomPosition = screenHeigth - currentPresentTop;
+	
+	 var presentWidth = getPresentWidth();
 	 
-	 increasePresentSize();
+	 if(presentWidth < 60) {
+		increasePresentSize();
+	 }
 	 
 	 if(bottomPosition > 120) {
 	 	setTimeout(dropPresent, 20);
@@ -76,7 +91,7 @@ function dropPresent() {
 
 function increasePresentSize() {
 
-	var presentWidth = parseInt(present.css('width'));
+	var presentWidth = getPresentWidth();
 	var presentHeight = parseInt(present.css('height'));
 	
 	presentWidth = presentWidth + 1;
@@ -85,6 +100,10 @@ function increasePresentSize() {
 	present.css('width',presentWidth);
 	present.css('height',presentHeight);
 }
+
+function getPresentWidth() {
+	return parseInt(present.css('width'));
+}	
 
 function moveSleigh() {
 	var currentPosition = getSleighPosition();
@@ -105,10 +124,6 @@ function getSleighPosition() {
 	return parseInt(sleigh.css('left'));;
 }
 
-function setupScreenDimensions() {
-	screenWidth = $(document).width();
-	screenHeigth = $(document).height();
-}
 
 function buildChristmasTree() {	
 	drawRow();
@@ -136,7 +151,7 @@ function snowFall() {
 	checkIfBottomRowOutsideScreen();
 	
 	snowFallLenght++;
-	if(snowFallLenght < 30) {
+	if(snowFallLenght < 60) {
 		setTimeout(snowFall, 1000);
 	} else {
 		endSnowFall();

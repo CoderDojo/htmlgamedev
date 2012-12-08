@@ -151,3 +151,8 @@ Can you create a div just inside your body tags and add the lights.
 		</div>
 ````
 Now refresh your browser and the lights should be at the top of your page.
+
+## Merry Christmas
+
+Now that we have lit up our christmas card its time to add our Christmas cheer main message.
+
