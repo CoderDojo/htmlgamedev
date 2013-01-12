@@ -16,11 +16,23 @@ var currentJumpSequence = 1;
 var keeperPositions = ["0px","100px"];
 var keeperArrayPosition = 0;
 
+//ball variables
+var ball;
+var penaltySpot;
+
+//rooney variables
+var rooney;
+
+
 function setup() {
 
 	//get the variables required from the HTML
 	keeper = $("#keeper");
   	goalWidth=400;
+  	
+  	ball = $("ball");
+  	penaltySpot = $("penaltySpot");
+  	rooney = $("rooney");
   	
   	commenceGame();
 }
@@ -77,6 +89,38 @@ function jumpKeeper() {
 		currentJumpSequence = currentJumpSequence +1;
 	}
 }
+
+function startGameSetup() {
+  	
+  	//15 is the half the width of the ball
+  	ball.css('left', ((goalWidth-40)/2) +'px'); //ball position
+  	ball.css('top','550px');
+  	
+  	penaltySpot.css('left', ((goalWidth-60)/2) +'px');
+  	penaltySpot.css('position', 'relative');
+  	
+  	var ballPosn = parseInt(ball.css('left'));
+  	rooney.css('left', (ballPosn+200)+'px'); //ball position
+  	rooney.css('display','block');  	
+}
+
+function rooneyStart() {
+	rooney.css('display', 'block');
+	startGameSetup();
+	rooneyRun();
+}
+
+function rooneyRun() {
+	var ballPosition = parseInt(ball.css('left'));
+	var rooneyPosition = parseInt(rooney.css('left'));
+	alert(ballPosition + ' ' + rooneyPosition);
+	if(ballPosition < (rooneyPosition-50)) {
+		rooney.css('left',(rooneyPosition-5)+'px');
+		setTimeout(rooneyRun,50);
+	} 
+}
+
+
 
 
 

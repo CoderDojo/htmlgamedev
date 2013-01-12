@@ -1,4 +1,4 @@
-003 Bring Rooney into the Game
+004 Bring Rooney into the Game
 ===================================
 
 Ok we have a flying goalie, possibly the coolest goalie I you have 
@@ -113,8 +113,62 @@ div#rooney {
 }
 ````
 
+Give rooney a run up
+------------
 
+Need to get rooney moving lets start adding some variables 
 
+````javascript
+//ball variables
+var ball;
+var penaltySpot;
 
+//rooney variables
+var rooney;
+````
+
+We now need to trigger rooney to start running, from the HTML? We will 
+start the rooney run up when you click the rooney image
+
+We need to add onclick to the rooney div already in your HTML code
+
+````html
+<div id="rooney" onclick="rooneyStart()"d>
+				<img src="roo2.png"/>
+			</div>
+````
+
+````javascript
+
+function startGameSetup() {
+  	
+  	//15 is the half the width of the ball
+  	ball.css('left', ((goalWidth-40)/2) +'px'); //ball position
+  	ball.css('top','550px');
+  	
+  	penaltySpot.css('left', ((goalWidth-60)/2) +'px');
+  	penaltySpot.css('position', 'relative');
+  	
+  	var ballPosn = parseInt(ball.css('left'));
+  	rooney.css('left', (ballPosn+200)+'px'); //ball position
+  	rooney.css('display','block');  	
+}
+
+function rooneyStart() {
+	rooney.css('display', 'block');
+	startGameSetup();
+	rooneyRun();
+}
+
+function rooneyRun() {
+	var ballPosition = parseInt(ball.css('left'));
+	var rooneyPosition = parseInt(rooney.css('left'));
+	alert(ballPosition + ' ' + rooneyPosition);
+	if(ballPosition < (rooneyPosition-50)) {
+		rooney.css('left',(rooneyPosition-5)+'px');
+		setTimeout(rooneyRun,50);
+	} 
+}
+````
 
 
