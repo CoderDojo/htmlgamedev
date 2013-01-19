@@ -1,5 +1,13 @@
 window.onload=setup
 
+//handle the key events
+document.onkeypress=function(e){
+	var e=window.event || e;
+	if(e.charCode==32) {
+ 		rooneyStart();
+	}
+}
+
 //keeper variables
 var keeper;
 var keeperWidth=150;
@@ -23,23 +31,28 @@ var penaltySpot;
 //rooney variables
 var rooney;
 
+var rooneyKick;
 
 function setup() {
 
-	//get the variables required from the HTML
-	keeper = $("#keeper");
+	setupVariables();
   	goalWidth=400;
   	
-  	ball = $("ball");
-  	penaltySpot = $("penaltySpot");
-  	rooney = $("rooney");
-  	
   	commenceGame();
+}
+
+function setupVariables() {
+	//get the variables required from the HTML
+	ball  = $("#ball");
+	penaltySpot = $("#penaltySpot");
+  	rooney  = $("#rooney");
+  	keeper = $("#keeper");
 }
 
 function commenceGame() {
 	setupHtmlPositions();
 	startKeeper();
+	penaltySetup();
 }
 
 //setupHtmlPositions
@@ -90,37 +103,37 @@ function jumpKeeper() {
 	}
 }
 
-function startGameSetup() {
+
+function penaltySetup() {
   	
   	//15 is the half the width of the ball
-  	ball.css('left', ((goalWidth-40)/2) +'px'); //ball position
-  	ball.css('top','550px');
+  	ball.css('top','500px');
   	
-  	penaltySpot.css('left', ((goalWidth-60)/2) +'px');
-  	penaltySpot.css('position', 'relative');
-  	
-  	var ballPosn = parseInt(ball.css('left'));
-  	rooney.css('left', (ballPosn+200)+'px'); //ball position
-  	rooney.css('display','block');  	
+  	rooney.css('left', '300px'); //ball position
 }
 
 function rooneyStart() {
 	rooney.css('display', 'block');
-	startGameSetup();
+	penaltySetup();
 	rooneyRun();
 }
 
 function rooneyRun() {
-	var ballPosition = parseInt(ball.css('left'));
+	var ballPosition = 200;
+	
 	var rooneyPosition = parseInt(rooney.css('left'));
-	alert(ballPosition + ' ' + rooneyPosition);
-	if(ballPosition < (rooneyPosition-50)) {
+	if(ballPosition < (rooneyPosition)) {
 		rooney.css('left',(rooneyPosition-5)+'px');
 		setTimeout(rooneyRun,50);
-	} 
+	}  
 }
 
-
+function rooneyKickBall() {
+	rooney.css('display', 'none');
+	var rooneyLeft = parseInt(rooney.css('left'));
+	rooneyKick.css('left', (rooneyLeft-20)+ 'px');
+	rooneyKick.css('display', 'block');
+}
 
 
 

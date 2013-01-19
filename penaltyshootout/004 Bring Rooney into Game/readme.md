@@ -5,7 +5,6 @@ Ok we have a flying goalie, possibly the coolest goalie I you have
 ever seen.  Unlike most Irish goal keepers this guys can fly and 
 actually save points.
  
-
 Aim
 ---------
 * 
@@ -92,7 +91,7 @@ Lets get rooney into our game
 ------------
 Its time to get our key man into the game and why not get an english
 player, gives to goal keeper a chance.  Rooney is one of Machester Unites
-greater player of all time so an ideal image.
+greater player of all time so an ideal image.  
 
 What HTML should we add for this image
 
@@ -101,8 +100,8 @@ What HTML should we add for this image
 	<img src="roo2.png"/>
 </div>			
 ````
-
-Now we have a massive rooney, whats next? We need to style it
+Can you add this image directly below the ```` <div id="ball">```` and 
+refresh your browser. Now we have a massive rooney, whats next? We need to style it
 
 ````css
 div#rooney {
@@ -113,10 +112,14 @@ div#rooney {
 }
 ````
 
+Now that rooney is looking game size its time to have a bit of fun and
+make him run
+
 Give rooney a run up
 ------------
 
-Need to get rooney moving lets start adding some variables 
+Need to get rooney moving lets start adding some variables to the
+top of javascript file directly below our keep
 
 ````javascript
 //ball variables
@@ -127,47 +130,121 @@ var penaltySpot;
 var rooney;
 ````
 
+We have the variables setup we now need to declare them, lets create 
+a function to do it
+
+````javascript
+function setupVariables() {
+	ball  = $("#ball");
+	penaltySpot = $("#penaltySpot");
+  	rooney  = $("#rooney");
+}
+````
+
+As we have already created a variable for keeper, think we should move it
+into this function?  So lets do that
+
+````javascript
+function setupVariables() {
+	//get the variables required from the HTML
+	ball  = $("#ball");
+	penaltySpot = $("#penaltySpot");
+  	rooney  = $("#rooney");
+  	keeper = $("#keeper");
+}
+````
+
+Do we need to call this function? Lets do it from the setup function
+as we need these variables for all our functions
+
+````javascript
+function setup() {
+
+	setupVariables();
+  	goalWidth=400;
+  	
+  	commenceGame();
+}
+````
+
 We now need to trigger rooney to start running, from the HTML? We will 
 start the rooney run up when you click the rooney image
 
 We need to add onclick to the rooney div already in your HTML code
 
 ````html
-<div id="rooney" onclick="rooneyStart()"d>
+<div id="rooney" onclick="rooneyStart()">
 				<img src="roo2.png"/>
 			</div>
 ````
 
+We will also enable rooney to run on the space key being hit,
+at the top of the file we will use the onkeypress to check 
+what key was hit,
+
+charKey 32 is the space key
+
 ````javascript
-
-function startGameSetup() {
-  	
-  	//15 is the half the width of the ball
-  	ball.css('left', ((goalWidth-40)/2) +'px'); //ball position
-  	ball.css('top','550px');
-  	
-  	penaltySpot.css('left', ((goalWidth-60)/2) +'px');
-  	penaltySpot.css('position', 'relative');
-  	
-  	var ballPosn = parseInt(ball.css('left'));
-  	rooney.css('left', (ballPosn+200)+'px'); //ball position
-  	rooney.css('display','block');  	
+//handle the key events
+document.onkeypress=function(e){
+	var e=window.event || e;
+	if(e.charCode==32) {
+ 		rooneyStart();
+	}
 }
+````
 
+What is the first function we need to write?  Its the rooneyStart one
+the function we need to call, this function will
+
+* Make sure the rooney is displaying on the screen
+* Start the penatly setup
+* Make rooney run
+
+````javascript
 function rooneyStart() {
 	rooney.css('display', 'block');
-	startGameSetup();
+	penaltySetup();
 	rooneyRun();
 }
+````
 
+Time to handle the basic penalty setup 
+* Set the ball top position
+* Set rooney left position
+
+````javascript
+
+function penaltySetup() {
+  	
+  	//15 is the half the width of the ball
+  	ball.css('top','500px');
+  	
+  	rooney.css('left', '300px'); //ball position
+}
+````
+
+Now that rooney needs to run up to the ball so we will create a function
+to handle that.  This function is going to get rooney to run towards the
+ball and stop when we reach the ball
+
+What we need to do is,
+* First need to set the ball position, the shootArea is 350px and the ball 
+is 45px, the ball is half way in the shoot area (margin-left:50%) so I am going to set the ball position
+to be 200
+* Lets get rooney's left position
+* If the left position is not 200 move rooney 
+* Recursively call this function until this position is reached
+
+````javascript
 function rooneyRun() {
-	var ballPosition = parseInt(ball.css('left'));
+	var ballPosition = 200;
+	
 	var rooneyPosition = parseInt(rooney.css('left'));
-	alert(ballPosition + ' ' + rooneyPosition);
-	if(ballPosition < (rooneyPosition-50)) {
+	if(ballPosition < (rooneyPosition)) {
 		rooney.css('left',(rooneyPosition-5)+'px');
 		setTimeout(rooneyRun,50);
-	} 
+	}  
 }
 ````
 
