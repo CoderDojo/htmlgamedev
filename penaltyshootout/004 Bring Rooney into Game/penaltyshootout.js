@@ -105,11 +105,9 @@ function jumpKeeper() {
 
 
 function penaltySetup() {
-  	
-  	//15 is the half the width of the ball
   	ball.css('top','500px');
-  	
-  	rooney.css('left', '300px'); //ball position
+  	rooney.css('left', '300px'); 
+  	rooneyKick.css('display', 'none');
 }
 
 function rooneyStart() {
@@ -127,11 +125,9 @@ function rooneyRun() {
 		setTimeout(rooneyRun,50);
 	}  
 }
-
+	
 function rooneyKickBall() {
 	rooney.css('display', 'none');
-	var rooneyLeft = parseInt(rooney.css('left'));
-	rooneyKick.css('left', (rooneyLeft-20)+ 'px');
 	rooneyKick.css('display', 'block');
 }
 

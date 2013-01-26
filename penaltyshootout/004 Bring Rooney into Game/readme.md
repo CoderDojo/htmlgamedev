@@ -248,4 +248,194 @@ function rooneyRun() {
 }
 ````
 
+Refresh your browser now and see you should see rooney running towards the ball. 
+
+
+Kick the ball
+------------
+
+Its great to see the greatest striker of all time running freely up to the
+ball but he really needs to get his game on here and kick the ball. What would 
+we add to the function above to make rooney kick the ball.  There is something
+we can do after the if is finished.  Lets but an ```` else ```` statement in
+there and create a new function called rooneyKickBall.  So our rooneyRun
+function now looks like
+
+````javascript
+function rooneyRun() {
+	var ballPosition = 200;
+	
+	var rooneyPosition = parseInt(rooney.css('left'));
+	if(ballPosition < (rooneyPosition)) {
+		rooney.css('left',(rooneyPosition-5)+'px');
+		setTimeout(rooneyRun,50);
+	}  else {
+		rooneyKickBall();
+	}
+}
+````
+
+To get started lets create our new function to kick the ball
+
+````javascript
+
+function rooneyKickBall() {
+
+}
+
+````
+
+The first thing we need to do is make our rooney image dissapear. Any 
+ideas, we did this early to make sure the image displayed as block
+on the screen, go back up through the code and see if you can find
+out which line displays the image in screen.
+
+The code uses the css function provided to us by JQuery.  In this function
+we are setting the display on rooney image so its
+
+````javascript 
+rooney.css('display', 'none');
+````
+Here we are using the display css property to hide the image
+* Hide image value = none
+* Show the image value = block
+
+Our rooneyKickBall function should now look like this
+
+````javascript
+
+function rooneyKickBall() {
+	rooney.css('display', 'none');
+}
+
+````
+
+Now refresh the browser and see what happens.  
+
+If we have hidden the rooney running image, the we now need to display
+the rooney kick image check out __roo3.png__ file.  To make this image
+display what is the first thing we need to do?
+
+Ye you are right we need to add this image to our html code, so lets open 
+index.html.   What html code add our image? and what HTML code do we 
+always put around an image tag?
+
+Time to add the image and div to our html code, add it directly below the rooney div.
+
+````html
+		<div id="rooneyKick">
+			<img src="roo3.png"/>
+		</div>
+````
+
+Refresh your browser and let us know what you think?  
+
+Ok rooney kick is a bit on the big side, in the wrong position and is 
+displaying on the screen even through we dont want to see him until
+he has kicked the ball, what language will we use to fix this? 
+
+Yes CSS you are right so lets open the style.css file, what is our first
+line of code we are going to add to the end of this file to style the 
+rooneyKick div?
+
+We need to add the tag name (div), # to say we are matching on id and 
+id value (rooneyKick)
+````css
+div#rooneyKick {
+
+}
+````
+In this style we need to 
+* add an exact position for the kick
+* add the left position to be just right of the ball
+* add the top to a position to rooney looks like he is kicking the ball
+* resize rooney so he is a similar size as the rooney run
+
+The following CSS achieves this 
+* __position__ is enabling us set an exact position 
+
+````css
+div#rooneyKick {
+	position: absolute;
+	left: 200px;
+	top: 430px;
+	width: 100px;
+}
+````
+
+Refresh your browser and let us know what you think, something still 
+wrong here, yes you are right we can still see rooneyKick on the screen.
+
+We will handle this in the javascript so time to get started.  As we 
+are using a new image we need to add a new variable for this at the 
+top of our javascript
+
+````javascript
+var rooneyKick;
+````
+
+Any idea how we going to declare this using jquery?  Lets go to the 
+setupVariables function and add
+
+````javascript
+rooneyKick = $("#rooneyKick");
+````
+
+Here we are using jquery selector to get the rooneyKick div from html code
+* $() - start of jquery selector
+* # - use as we selecting by id
+* rooneyKick - id value from html div tag
+
+Our setupVariables function should now look like this
+
+````javascript
+function setupVariables() {
+	//get the variables required from the HTML
+	ball  = $("#ball");
+	penaltySpot = $("#penaltySpot");
+  	rooney  = $("#rooney");
+  	keeper = $("#keeper");
+  	
+  	rooneyKick = $("#rooneyKick");
+}
+````
+
+We can still see rooney on our screen so its time to hide him so navigate
+to the penaltySetup function and add the code to hide the image, remember
+we seen hiding rooney image earlier.  So any ideas what you need to do
+to the rooneyKick variable
+
+````javascript
+rooneyKick.css('display', 'none');
+````
+
+Your penaltySetup function should now look like this
+
+````javascript
+function penaltySetup() {
+  	ball.css('top','500px');
+  	rooney.css('left', '300px'); 
+  	rooneyKick.css('display', 'none');
+}
+````
+Now refresh your browser and your rooneyKick should be gone.  Time to
+finish rooneyKickBall function to make the rooneyKick image appear. Any
+ideas here?
+
+````javascript
+rooneyKick.css('display', 'block');
+````
+
+The rooneyKickBall function should now look like this
+
+````javascript
+
+function rooneyKickBall() {
+	rooney.css('display', 'none');
+	rooneyKick.css('display', 'block');
+}
+
+````
+
+
 
