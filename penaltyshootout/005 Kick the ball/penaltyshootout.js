@@ -47,7 +47,7 @@ function setupVariables() {
 	penaltySpot = $("#penaltySpot");
   	rooney  = $("#rooney");
   	keeper = $("#keeper");
-  	rooneyKick = $("rooneyKick");
+  	rooneyKick = $("#rooneyKick");
 }
 
 function commenceGame() {
@@ -124,7 +124,10 @@ function rooneyRun() {
 	if(ballPosition < (rooneyPosition)) {
 		rooney.css('left',(rooneyPosition-5)+'px');
 		setTimeout(rooneyRun,50);
-	} 
+	} else {
+		rooneyKickBall();
+		moveBall();
+	}
 }
 	
 function rooneyKickBall() {
@@ -132,7 +135,14 @@ function rooneyKickBall() {
 	rooneyKick.css('display', 'block');
 }
 
-
+function moveBall() {	
+	var currentTop = parseInt(ball.css('top'));
+	var newTopValue = currentTop - 10;
+	ball.css('top',newTopValue+'px');
+	if(currentTop > 100) {
+		setTimeout(moveBall,20);
+	}
+}
 
 
 

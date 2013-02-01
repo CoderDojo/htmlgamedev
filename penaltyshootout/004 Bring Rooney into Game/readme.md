@@ -7,8 +7,11 @@ actually save points.
  
 Aim
 ---------
-* 
-
+* Another look at functions
+* Variables
+* JQuery selectors
+* CSS positioning
+* How to style elements in JQuery
 
 Game aim
 -----------
