@@ -69,7 +69,38 @@ The following code creates a variable with the current top value
 ````javascript
 function moveBall() {	
 	var currentTop = parseInt(ball.css('top'));
-	
 }
+````
 
+Now we have the top position on the screen, why do we need to understand
+where the ball is in relation to the top of the screen? Its because
+we need the ball to change its top position
+
+So lets change the currentTop value by subtracting 10 dots (px) to the
+current top value, will we need a new variable for this?
+
+````javascript
+function moveBall() {	
+	var currentTop = parseInt(ball.css('top'));
+	var newTopValue = currentTop - 10;
+
+}
+````
+
+We now need variables to use variables to set the top position for 
+point or goal.  Lets think about this we need the position on the screen
+where the ball should stop for point and goal? Remember we are dealing
+with a 2D screen here.
+
+We need three varaibles
+* goalTop is the goal stop top position on screen
+* pointTop is the point stop top position on screen
+* topStopPoint is the current stop position, this can either be a point or goal top
+
+Add these variables to the top of the screen
+
+````javascript
+var goalTop = 120;
+var pointTop = 80;
+var topStopPoint;
 ````

@@ -33,6 +33,10 @@ var rooney;
 
 var rooneyKick;
 
+var goalTop = 120;
+var pointTop = 80;
+var topStopPoint;
+
 function setup() {
 
 	setupVariables();
