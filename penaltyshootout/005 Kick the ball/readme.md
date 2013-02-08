@@ -193,9 +193,90 @@ we need two more keys
 * Up arrow
 * Down arrow
 
-We should remember we need to get the key codes for the keys
+We should remember we need to get the codes for the keyboard, 
 
 | *Key* | *Code* |
 | Up arrow | 38 |
 | Down arrow | 40 |
 | Space key | 32 |
+
+Now that we are handling 3 keys we should move to a function, how about
+ a new function that handles the key action?
+
+This function will need to take in a parameter for the event we will
+call that e.
+
+Lets think about how many keys on the keyboard each of this events tells
+us different information such as the key type eg enter key, up arrow key etc.
+This information is help inside the e parameter.
+
+````javascript
+function handleKey(e) {
+
+}
+````
+
+You now need to call this function to catch a key triggering, orginally
+we had __document.onkeypress__
+
+````javascript
+//handle the keyboard events
+document.onkeypress=function(e){
+
+````
+
+##### NOTE
+document.onkeypress does not work for arrow keys so we need to change
+it to document.onkeydown and call our new function
+
+````javascript
+//handle the keyboard events
+document.onkeydown = handleKey;
+````
+
+We should add the code back in here from the for the space key.  We
+
+* first got the event variable
+* got the code for the key from the event variable
+* check if the code was space bar __(32)__
+* if it was space bar they we started rooney's runup
+
+````javascript
+function handleKey(e) {
+	var event = window.event ? window.event : e;
+	var keyCode = event.keyCode;
+	
+	if (keyCode == 32) { // space bar
+		rooneyStart();	
+	} 
+}
+````
+Time to refresh your browser and make sure it all works as before.  
+Hit your space key and rooney should run up and take the penalty.  
+
+We now want to have rooney running up and want to allow him to shoot
+a penalty or point so its time to bring our arrow keys into the game.
+
+##### Up arrow
+
+Can you remember the key code for the up arrow? Its 38 so we need to 
+add the if condition to do this. 
+
+###### if else
+There is scenarios when you want to check against more than two if conditions, in
+this scenario you should use an __else if__ statement.  Here we can
+check if the key selected is space bar, up arrow or down arrow.
+
+Every __if else__ statment is followed by the condition you want to check.
+
+````javascript
+function handleKey(e) {
+	var event = window.event ? window.event : e;
+	var keyCode = event.keyCode;
+	
+	if (keyCode == 32) { // space bar
+		rooneyStart();	
+	} 
+}
+````
+
