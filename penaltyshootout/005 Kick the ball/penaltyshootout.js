@@ -1,12 +1,24 @@
 window.onload=setup
 
-//handle the key events
-document.onkeypress=function(e){
-	var e=window.event || e;
-	if(e.charCode==32) {
- 		rooneyStart();
+document.onkeydown = handleKey;
+
+function handleKey(e) {
+
+	var event = window.event ? window.event : e;
+	var keyCode = event.keyCode;
+	
+	if (keyCode == 32) { // space bar
+		rooneyStart();	
+	} else if(keyCode == 40) { // down arrow
+		alert('down');
+	} else if(keyCode == 38) { //up arrow
+		alert('up');
+	}  else if(keyCode ==13) { //enter key
+		alert('enter');
 	}
 }
+
+
 
 //keeper variables
 var keeper;
@@ -35,7 +47,7 @@ var rooneyKick;
 
 var goalTop = 120;
 var pointTop = 80;
-var topStopPoint;
+var topStopPoint = goalTop;
 
 function setup() {
 
@@ -143,7 +155,7 @@ function moveBall() {
 	var currentTop = parseInt(ball.css('top'));
 	var newTopValue = currentTop - 10;
 	ball.css('top',newTopValue+'px');
-	if(currentTop > 100) {
+	if(currentTop > topStopPoint) {
 		setTimeout(moveBall,20);
 	}
 }
