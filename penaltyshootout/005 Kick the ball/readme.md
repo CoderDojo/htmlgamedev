@@ -195,7 +195,7 @@ we need two more keys
 
 We should remember we need to get the key codes for the keys
 
-| *Key* | *Code*
-| Up arrow | 38
-| Down arrow | 40
-| Space key | 32
+| *Key* | *Code* |
+| Up arrow | 38 |
+| Down arrow | 40 |
+| Space key | 32 |
