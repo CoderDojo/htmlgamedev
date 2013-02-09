@@ -145,11 +145,12 @@ We need three varaibles
 We will default the topStopPoint to goal and will show you how you can
 change it later.
 
-Add these variables to the top of the screen
+Add these variables to the top of the screen and the values as to where
+the ball should stop in relation to the top of the screen.
 
 ````javascript
 var goalTop = 120;
-var pointTop = 80;
+var pointTop = 20;
 var topStopPoint = goalTop;
 ````
 
@@ -187,6 +188,8 @@ document.onkeypress=function(e){
 }
 ````
 
+### Kick points or goals
+
 At the moment we are only using the space key to kick the ball, but ow
 we need two more keys
 
@@ -195,10 +198,10 @@ we need two more keys
 
 We should remember we need to get the codes for the keyboard, 
 
-| *Key* | *Code* |
-| Up arrow | 38 |
-| Down arrow | 40 |
-| Space key | 32 |
+* *Key* | *Code* 
+* Up arrow | 38 
+* Down arrow | 40 
+* Space key | 32 
 
 Now that we are handling 3 keys we should move to a function, how about
  a new function that handles the key action?
@@ -260,7 +263,7 @@ a penalty or point so its time to bring our arrow keys into the game.
 ##### Up arrow
 
 Can you remember the key code for the up arrow? Its 38 so we need to 
-add the if condition to do this. 
+add the if condition to do this.  We will use this for scoring a point.
 
 ###### if else
 There is scenarios when you want to check against more than two if conditions, in
@@ -270,13 +273,147 @@ check if the key selected is space bar, up arrow or down arrow.
 Every __if else__ statment is followed by the condition you want to check.
 
 ````javascript
+else if(keyCode == 38) {
+````
+
+The handle key function now looks like this
+
+````javascript
 function handleKey(e) {
 	var event = window.event ? window.event : e;
 	var keyCode = event.keyCode;
 	
 	if (keyCode == 32) { // space bar
 		rooneyStart();	
+	} else if(keyCode == 38) {
+	
+	}
+}
+````
+
+We now need to perform an action on pressing of the up arrow, this 
+action will need to tell the game to kick a point, the down arrow will be 
+used to kick a goal.
+
+So lets get started with creating a new function for kick point 
+
+````javascript 
+function kickPoint() {
+
+}
+````
+
+Inside this function we need to set a variable to tell the ball where
+to stop on the screen? Can you remember we used that variable in the
+moveBall function.  It was called __topStopPoint__.  
+
+We need to stop the ball at the __pointTop__ position so we will set the
+__topStopPoint__ to this position.
+
+
+````javascript 
+function kickPoint() {
+	topStopPoint = pointTop;
+}
+````
+
+We now need to call this function when we hit the up arrow so lets go
+back to the handleKey function and add this new function.
+
+
+````javascript
+function handleKey(e) {
+	var event = window.event ? window.event : e;
+	var keyCode = event.keyCode;
+	
+	if (keyCode == 32) { // space bar
+		rooneyStart();	
+	} else if(keyCode == 38) {
+		kickPoint();
+	}
+}
+````
+
+##### Down arrow
+
+Can you remember the key code for the down arrow? Its 40 so we need to 
+add the if condition to do this.  We will use this for scoring a goal.
+
+###### if else
+There is scenarios when you want to check against more than two if conditions, in
+this scenario you should use an __else if__ statement.  Here we can
+check if the key selected is space bar, up arrow or down arrow.
+
+Every __if else__ statment is followed by the condition you want to check.
+
+````javascript
+else if(keyCode == 40) {
+````
+
+The handle key function now looks like this
+
+````javascript
+function handleKey(e) {
+	var event = window.event ? window.event : e;
+	var keyCode = event.keyCode;
+	
+	if (keyCode == 32) { // space bar
+		rooneyStart();	
+	} else if(keyCode == 38) {
+		kickPoint();
+	} else if(keyCode == 40) {
+	
+	}
+}
+````
+
+We now need to perform an action on pressing of the down arrow, this 
+action will need to tell the game to kick a goal.
+
+So lets get started with creating a new function for kick point 
+
+````javascript 
+function kickGoal() {
+
+}
+````
+
+Inside this function we need to set a variable to tell the ball where
+to stop on the screen? Can you remember we used that variable in the
+moveBall function.  It was called __topStopPoint__.  
+
+We need to stop the ball at the __goalTop__ position so we will set the
+__topStopPoint__ to this position.  Just like we did with the pointTop
+when we selected a point.
+
+````javascript 
+function kickGoal() {
+	topStopPoint = goalTop;
+}
+````
+
+We now need to call this function when we hit the up arrow so lets go
+back to the handleKey function and add this new function.
+
+````javascript
+function handleKey(e) {
+	var event = window.event ? window.event : e;
+	var keyCode = event.keyCode;
+	
+	if (keyCode == 32) { // space bar
+		rooneyStart();	
+	} else if(keyCode == 38) {
+		kickPoint();
+	} else if(keyCode == 40) {
+		kickGoal();
 	} 
 }
 ````
+
+### Add some arrows 
+
+In most games there is indications of your selected actions, we have 
+just allowed rooney kick a point or a goal, but what if you cant remember
+what you selected, how about we add some arrows to the screen to help us.
+
 

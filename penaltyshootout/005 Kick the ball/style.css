@@ -99,4 +99,12 @@ div#rooneyKick {
     left: 200px;
     top: 430px;
     width: 100px;
+ }
+ 
+div.arrow {
+	width: 100px;
+	position: absolute;
+	right: 50px;
+	bottom: 50px;
+	display: none;
 }

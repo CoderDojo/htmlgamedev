@@ -9,11 +9,11 @@ function handleKey(e) {
 	
 	if (keyCode == 32) { // space bar
 		rooneyStart();	
-	} else if(keyCode == 40) { // down arrow
-		alert('down');
-	} else if(keyCode == 38) { //up arrow
-		alert('up');
-	}  else if(keyCode ==13) { //enter key
+	} else if(keyCode == 38) { // arrow up
+		kickPoint();
+	} else if(keyCode == 40) { // arrow down
+		kickGoal();
+	} else if(keyCode ==13) { //enter key
 		alert('enter');
 	}
 }
@@ -46,7 +46,7 @@ var rooney;
 var rooneyKick;
 
 var goalTop = 120;
-var pointTop = 80;
+var pointTop = 20;
 var topStopPoint = goalTop;
 
 function setup() {
@@ -158,6 +158,14 @@ function moveBall() {
 	if(currentTop > topStopPoint) {
 		setTimeout(moveBall,20);
 	}
+}
+
+function kickGoal() {
+	topStopPoint = goalTop;
+}
+
+function kickPoint() {
+	topStopPoint = pointTop;
 }
 
 
