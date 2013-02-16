@@ -49,6 +49,8 @@ var goalTop = 120;
 var pointTop = 20;
 var topStopPoint = goalTop;
 
+var arrowImage;
+
 function setup() {
 
 	setupVariables();
@@ -64,12 +66,14 @@ function setupVariables() {
   	rooney  = $("#rooney");
   	keeper = $("#keeper");
   	rooneyKick = $("#rooneyKick");
+  	arrowImage = $("#arrowImage");
 }
 
 function commenceGame() {
 	setupHtmlPositions();
 	startKeeper();
 	penaltySetup();
+	kickGoal();
 }
 
 //setupHtmlPositions
@@ -162,11 +166,15 @@ function moveBall() {
 
 function kickGoal() {
 	topStopPoint = goalTop;
+	arrowImage.attr('src','arrowdown.png');
 }
 
 function kickPoint() {
 	topStopPoint = pointTop;
+	arrowImage.attr('src','arrowup.png');
 }
+
+
 
 
 

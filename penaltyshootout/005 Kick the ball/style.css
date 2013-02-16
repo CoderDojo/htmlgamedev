@@ -101,10 +101,9 @@ div#rooneyKick {
     width: 100px;
  }
  
-div.arrow {
+div#arrowDiv {
 	width: 100px;
 	position: absolute;
 	right: 50px;
 	bottom: 50px;
-	display: none;
 }

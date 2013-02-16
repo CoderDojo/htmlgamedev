@@ -416,4 +416,115 @@ In most games there is indications of your selected actions, we have
 just allowed rooney kick a point or a goal, but what if you cant remember
 what you selected, how about we add some arrows to the screen to help us.
 
+#### Style the arrows
 
+Its time to style the for our arrows, we will start with the HTML, what tag do we start with
+when adding an image?  Ye you are right a ```` div ```` so add it and put an id of __arrowDown__.
+Inside the div we need to add the img tag, but we wont add the __src__ attribute for the image, can
+you think why?
+
+
+````html
+<div id="arrowDiv">
+			<img id="arrowImage"/>
+		</div>
+````
+
+We don't add the src attribute as we will need to change the arrow image based on the user selection? If the user selects 
+point we need an up arrow and a down arrow for the goal.  To enable us change the src value we added an id to the 
+img tag.
+
+It's time to style the div, lets position the arrows to the bottom right of the screen, any thoughts on how you are 
+going to do that?
+* width to 100px
+* position to absolute
+* bottom to 50px 
+* right to 50px
+
+````css
+div#arrowDiv {
+	width: 100px;
+	position: absolute;
+	right: 50px;
+	bottom: 50px;
+}
+````
+
+Now refresh you browser and see if there is any change.  There should be none as we haven't added the image yet.  Its time to 
+jump into the javascript and get our arrows to display.  To display the arrow on screen what is the first thing we need need to 
+do in penaltyshootout.js?  Yes you are right we need to start with a variable
+
+
+````javascript
+var arrowImage;
+````
+
+Once we have our variable, we now need to get the img from the html.  Lets move to  
+setupVariables function and set our arrowImage variable to the arrowImage img tag.
+
+We need to use JQuery selector to get the arrowImage from the page
+
+````javascript
+arrowImage = $("#arrowImage");
+````
+
+This is what the setupVariables after the arrowImage is added to the screen
+
+````javascript
+function setupVariables() {
+	//get the variables required from the HTML
+	ball  = $("#ball");
+	penaltySpot = $("#penaltySpot");
+  	rooney  = $("#rooney");
+  	keeper = $("#keeper");
+  	rooneyKick = $("#rooneyKick");
+  	arrowImage = $("#arrowImage");
+}
+````
+
+Lets add the code the change the arrow to our kickGoal and kickPoint functions.  We
+need to add the image file to our __img__ tag to our functions.  
+
+__ADDING A ATTRIBUTE TO VARIABLE__
+
+To set an attribute on a variable
+* Start with variable name __arrowImage__
+* Add dot __arrowImage.__
+* Use the attr function __arrowImage.attr()__
+* First add the attribute you want to set src in this scenario __arrowImage.attr('src',)__
+* Add the value for the attribute __arrowImage.attr('src','arrowdown.png')__
+* Finish the line with semicolan __arrowImage.attr('src','arrowdown.png');__
+
+
+````javascript
+arrowImage.attr('src','arrowdown.png')
+````
+
+We need to add the arrowdown.png to the kickGoal function.
+
+````javascript
+function kickGoal() {
+	topStopPoint = goalTop;
+	arrowImage.attr('src','arrowdown.png');
+}
+````
+We need to add the arrowup.png to the kickPoint function.
+
+````javascript
+function kickPoint() {
+	topStopPoint = pointTop;
+	arrowImage.attr('src','arrowup.png');
+}
+````
+
+By default we are going to setup to kick a goal so we need to set this up in the game.  So we
+ should add this functionality to the commenceGame function.  Lets add the __kickGoal()__ function.
+
+````javascript
+function commenceGame() {
+	setupHtmlPositions();
+	startKeeper();
+	penaltySetup();
+	kickGoal();
+}
+````
