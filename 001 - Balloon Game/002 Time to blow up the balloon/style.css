@@ -1,0 +1,12 @@
+body {
+	background-color: blue;
+	color: white;
+}
+
+img {
+	width: 100%;
+}
+
+div#balloon {
+	width: 150px;
+}
