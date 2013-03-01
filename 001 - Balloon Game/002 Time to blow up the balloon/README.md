@@ -261,11 +261,11 @@ function blow() {
 	var width = parseInt(balloon.style.width);
 }
 
+````
+
 __NOTE__
 As the __width__ variable is created inside this function, it can only be access inside this blow function 
 and not outside it.
-
-````
 
 Make the balloon bigger
 --------
@@ -344,12 +344,14 @@ Questions
 
 Great session today with you now creating variables and function with ease, we learnt today how to blow up the balloon.  
 
-* What is a function
-* What is a variable
+* What is a function?
+* What is a variable?
 * Why do we wait until the HTML code has loaded before calling the JavaScript functions?
 * How do you call a JavaScript function from your HTML when the page loads?
 * How do you call a JavaScript function when you click an image?
-* How do you get the width in JavaScript of an HTML variable
-* What does parseInt function do
+* How do you get the width in JavaScript of an HTML variable?
+* What does parseInt function do?
+* How did we get the width of the balloon in JavaScript?
+* How did we increase the width of the balloon?
 
 
