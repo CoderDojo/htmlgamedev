@@ -229,8 +229,254 @@ function moveBall() {
 	} else {
 		save();
 	}
-	
 }
 
 ````
+
+We are happy with the right and left positions of the keeper its time to take a look at the ball and get its left position.  The 
+variable is called __ball__ can you tell me what code will give us the numeric left position.  
+* ```` ball.css('left') ````
+* And you will need to put ```` parseInt() ````` around it
+
+Add this code to your __save__ function
+
+````javascript
+  var ballLeft = parseInt(ball.css('left'));
+````
+
+Also add the ballLeft to the __alert__ so we can see what value the ball is.
+
+The __save__ function should now look like this with your new variable.
+
+````javascript
+function save() {
+		
+		var keeperLeft = parseInt(keeper.css('left'));
+		var keeperRight = keeperLeft+keeperWidth;
+		
+		var ballLeft = parseInt(ball.css('left'));
+	
+		alert(keeperLeft + ' - ' + keeperRight + ' ' + ballLeft);
+}
+````
+
+Refresh your browsers, take a shot and see if we are happy with our __ball__ and __keeper__ positions.  Lets now add the right
+position for the ball, if I told you the __ball__ width is 50 can you tell me how you would calculate the left position for the
+__ball__.
+* Yes you are right by adding 50 to the __ballLeft__ variable, so lets go ahead and do that.
+
+So can we see if you can create a new variable called __ballRight__ and add these values together.
+
+````javascript
+	var ballRight = ballLeft + 50;
+````  
+
+Do you think we would be better using a variable now for the ball width, yes I agree its alot cleaner as when add 50 to __ballLeft__ in 
+a few weeks we may not remember what 50 was there for.  So lets create a variable for the ball width and put it at the top of penaltyshootout.js.
+Remember the variables we add here up here are global and can be used in every function on the page.
+
+
+````javascript
+	var ballWidth = 50;
+````  
+
+Now lets replace the __ballRight__ calculation inside the __save__ function using this new ballWidth variables.
+
+
+````javascript
+	var ballRight = ballLeft + ballWidth;
+````  
+
+Refresh your browser and make sure its still working, take a look at the 3 value in there position alerts and let us know if you think there is 
+anything wrong with the 3rd value which is __ballLeft__.  Do you actually believe the __ballLeft__ is 0 position? It does not look right
+to me, does anyone know the reason for this? Does anyone remember setting the left position of the ball? Or why does the ball position
+directly inside the penalty spot.  
+
+Well the answer the value is zero is we have never set ```` ball.css('left', value) ```` in our file.  
+
+Lets take a look at style.css styling of the ball to understand why its positioning in the center.
+
+````css
+div#ball {
+	position: absolute;
+	top: 500px;
+	width: 50px;
+	margin-left: 50%;
+}
+````
+
+Which one of these properties is positioning the __ball__ in the center.   Yes you are right its the ```` margin-left: 50%; ````, its
+time to remove this style property from __div#ball__ and refresh your browser.
+
+You style.css for __div#ball__ should now look like this
+
+````css
+div#ball {
+	position: absolute;
+	top: 500px;
+	width: 50px;
+}
+````
+
+Now is the ball in the wrong place? Its time to move that and finally fix our __ballLeft__ calculation.  Lets do a review, 
+can anyone figure out how we are going to set the ball left position to a number?  We should take a look at what info we have available
+* Goal width is 350px from style.css ```` div#goalPosts `````
+
+
+So lets set the __ball__ left position to half the goal width, do you know which function we are going to add this too?
+* The function __setupHtmlPositions()__ was created for this very job so lets add it there
+
+What is the javascript code you are going to add for this? Start with the variable __ball__ and set the value to 
+__175px__ which is half to goal width
+
+````javascript
+	ball.css('left', '175px');
+````
+
+Your __setupHtmlPositions__ should now look like this.
+
+````javascript
+//setupHtmlPositions
+function setupHtmlPositions() {
+	keeper.css('top','0px');
+	keeper.css('left','0px');
+	ball.css('left','175px');
+}
+```` 
+
+Lets refresh your browser and see if you are happy with the ball position.  Now kick the ball and the __alert__ should not tell us
+the __ballLeft__ value is 175 and __ballRight__ is 225.  
+
+Great we are looking good its now time to remove the alert function and we can add a function to check if the keeper has saved the ball.
+
+Is it a goal?
+--------
+
+We are happy with our position values returned and its now time to see if we have actually saved the shoot or has a goal been scored.  So
+we will get started by creating a new function for this call __isGoal__
+
+Can you create this function
+
+````javascript
+function isGoal() {
+
+}
+````
+
+We not have our function but we do not have the information we need to understand whether it was a goal or saved inside this function. Can 
+you remember what information we need? 
+* __ball__ left position
+* __ball__ right position
+* __keeper__ left position
+* __keeper__ right position
+
+Is there any other positions we need, yes of course there is one to help us understand point or goal
+* __ball__ top position
+* __keeper__ top position
+* __keeper__ bottom position
+But we will look at these later.
+
+The best way to get the information we need into this function is by passing __parameters__ into our function.  To do this
+we add the information in between the round brackets __()__.  So lets add these variables.
+
+__NOTE__
+You can add multiple variable to a function as long as they are separated with a comma __,__
+
+````javascript
+function isGoal(keeperLeft, keeperRight, ballLeft, ballRight) {
+
+}
+````
+
+This is how we add these variables to this function and now we can use them in this function to help us understand whether a goal
+was scored.  So lets see if anyone can tell us using these 4 variables / values explain how a goal is scored?
+
+* if ballRight is less than keeperLeft
+
+__OR__
+
+* if ballLeft is greater than keeperRight 
+
+So lets program these conditions, would you agree its time to use __if__ statement, what is the first if condition inside our __isGoal__
+function
+
+````javascript
+	if((ballRight < keeperLeft))
+````
+
+The __isGoal__ function should now look like this
+
+````javascript
+function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
+	if((ballRight < keeperLeft)) {
+	
+	}
+}
+````
+
+### OR Conditions
+
+We have said that if the ball is outside the keepers left position __OR__ the ball is outside the keepers right position
+then its a goal.
+
+So we have to put an __OR__ in our if statement this can be done by using two pipes on your keyboard __||__.
+
+With the two __||__ we need to update our if statement to check if the __ballLeft__ is greater than __keeperRight__
+
+````javascript
+	if((ballRight < keeperLeft) ||
+	 (ballLeft > keeperRight))
+````
+
+Our __isGoal__ function should now look like this after we add the __{}__ around our if statement
+
+````javascript
+function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
+	if((ballRight < keeperLeft) ||
+			(ballLeft > keeperRight)) {
+	}
+}
+````
+
+### Returning values from a function 
+
+To return a value from a function we use the __return__ keyword, in this scenario it will tell us __true__ if goal was
+scored otherwise __false__ if was saved.  To return true on our __if__ condition we add  ```` return true; ```` inside 
+our __if__ block.
+
+````javascript
+function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
+	if((ballRight < keeperLeft) ||
+			(ballLeft > keeperRight)) {
+			return true;
+	}
+}
+````
+
+However we need to also return false if its saved by the keeper, I think we can do this with an else statement and adding
+```` return false; ````.  
+
+The __isGoal__ function should now look like this.
+
+````javascript
+function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
+	if((ballRight < keeperLeft) ||
+			(ballLeft > keeperRight)) {
+			return true;
+	} else {
+		return false;
+	}
+}
+````
+
+
+
+Questions
+-------
+Lets do a recap of keep learning objectives here
+* How do you get the left position for the ball?
+* What is a parameter?
+* Explain if / else statements?
+* How do you add an __OR__ condition inside your if statement?
+* How do you return a value from a function?
 
