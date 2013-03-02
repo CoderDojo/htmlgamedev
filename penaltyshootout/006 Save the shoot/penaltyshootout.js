@@ -173,6 +173,8 @@ function moveBall() {
 	
 	if(newBallTop > topStopPoint) {
 		setTimeout(moveBall, 20);
+	} else {
+		save();
 	}
 	
 }
@@ -188,5 +190,78 @@ function kickGoal() {
 }
 
 function save() {
-	
+		
+		var keeperLeft = parseInt(keeper.css('left'));
+		var keeperRight = keeperLeft+keeperWidth;
+		
+		var ballLeft = parseInt(ball.css('left'));
+		var ballRight = parseInt(ballLeft)+50;
+		
+		if(isGoal(ballLeft, ballRight, keeperLeft, keeperRight)) {
+			alert('Score');
+		} else {
+			alert('Saved');
+		}
+
+		setTimeout(gameStart,1000);
 }
+
+function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
+	return (ballLeft >= keeperLeft 
+			&& ballLeft <= keeperRight) ||
+			(ballRight >= keeperLeft 
+			&& ballRight <= keeperRight)
+}
+
+
+/**
+function keeperSave() {	
+		
+		keeperDived = true;
+		
+		var keeperLeft = parseInt(keeper.style.left);
+		var keeperRight = parseInt(keeperLeft)+keeperWidth;
+		
+		//get the left side of the ball position
+		var ballLeft = parseInt(ball.style.left);
+		//need to add the margin for the goal size
+		ballLeft-=50;
+		var ballRight = parseInt(ballLeft)+30;
+		
+		leftKeeper.innerHTML=keeperLeft;
+		rightKeeper.innerHTML=keeperRight;
+		position.innerHTML=ballLeft + ' - ' + ballRight;	
+		
+		goalWidthDiv.innerHTML=goalWidth;
+		
+		if(isGoal(ballLeft, ballRight, keeperLeft, keeperRight)) {
+			result.innerHTML='Saved';
+			keeperScore++;
+			commence();
+			
+		} else {
+			timeOut--;
+			
+			//never let the goal go below 300px
+			if(goalWidth>=300) {
+				goalWidth -= 10;
+				goal.style.width = goalWidth + 'px';
+			}
+			startKeeper();
+			result.innerHTML='Goal';
+			playerScore++;
+			commenceCelebration();
+		}
+		shootInProgress = false;
+		updateScore();
+		animator = setTimeout(gameStart,1000);
+}
+
+function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
+	return (ballLeft >= keeperLeft 
+			&& ballLeft <= keeperRight) ||
+			(ballRight >= keeperLeft 
+			&& ballRight <= keeperRight)
+}
+
+*/
