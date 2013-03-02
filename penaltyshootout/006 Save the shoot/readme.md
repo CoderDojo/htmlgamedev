@@ -469,7 +469,219 @@ function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
 }
 ````
 
+Don't worry we will come back to understanding if goal or point scored later.
 
+### Call the isGoal function in our code
+
+Great we have just created this cool function to check if a goal has being scored, but we are not calling in our code, can you
+tell me which method we should call it from?
+* Ye you are right the __save__ function.
+
+So lets go to that function and call our new function.  
+
+````javascript
+	isGoal(ballLeft, ballRight, keeperLeft, keeperRight)
+````
+
+__NOTE__ 
+How we are passing in the variables we created in the the __save__ function
+* ballLeft
+* ballRight
+* keeperLeft
+* keeperRight
+
+Lets put an alert around this function so we can see the returned value on screen
+
+````javascript
+	alert(isGoal(ballLeft, ballRight, keeperLeft, keeperRight));
+````
+
+The __save__ function should now look like this
+
+````javascript
+function save() {
+		
+	var keeperLeft = parseInt(keeper.css('left'));
+	var keeperRight = keeperLeft+keeperWidth;
+		
+	var ballLeft = parseInt(ball.css('left'));
+	var ballRight = parseInt(ballLeft)+ballWidth;
+		
+	alert(keeperLeft + ' - ' + keeperRight + ' ' + ballLeft +
+		' ' + ballRight);
+		
+	alert(isGoal(ballLeft, ballRight, keeperLeft, keeperRight));
+}
+````
+
+Can you tell me did __true__ or __false__ appear on your screen? And what do each of these mean?
+
+Its now time to remove our first alert and put an __if / else__ condition around the __isGoal__ function.
+* Inside the __if__ block we will put an __alert__ telling you scored
+* Inside __else__ condition we will put __alert__ tell you the shot was saved
+
+````javascript
+function save() {
+		
+	var keeperLeft = parseInt(keeper.css('left'));
+	var keeperRight = keeperLeft+keeperWidth;
+		
+	var ballLeft = parseInt(ball.css('left'));
+	var ballRight = parseInt(ballLeft)+ballWidth;
+			
+	if(isGoal(ballLeft, ballRight, keeperLeft, keeperRight)) {
+		alert('Score');
+	} else {
+		alert('Saved');
+	}
+}
+````
+
+Add some scores
+--------
+
+Its great we now know whether a ball was saved or scored through our code, so that is a really great result.  Now how about
+we display the scores in our HTML pages?  Lets move to index.html
+
+I think we should put the scores at the bottom left and right hand sides of the screen, the computer's (keepers) score on left
+and your score on right.  We will need to put two names on top of score and make sure the text is big enough.
+
+Ok these scores are going to be outside the __shootArea__ div, so will be inside the __body__ tag.  We need to create two sections
+on the screen for these tags so what tag should we start with?
+
+Yes you are right __div__ so lets create the __computerScoreDiv__
+* Inside this div we want a __h3__ tag with __COMPUTER__ inside it
+* We also want a __div__ tag inside this which contacts the score and has an id of __computerScore__
+
+
+Your should add the following html code.
+
+
+````html
+
+<div id="computerScoreDiv">
+                <h3>COMPUTER</h3>
+                <div id="computerScore">0</div>	
+         </div>
+
+````
+
+Lets open __style.css__ and style this.  
+
+````css
+
+div#computerScoreDiv
+{
+	left: 20px;
+	text-align: center;
+}
+
+#computerScoreDiv
+{
+	position: absolute;
+	bottom: 20px;
+	color: #FFF;
+	width: 200px;
+	opacity: .8;
+	font-size: 100px
+}
+
+h3 {
+	margin: 0px;
+	font-size: 25px;
+}
+
+````
+
+Now refresh your browser and let us know what you think? How about we do the same for the player score but it needs to be positioned on the right.
+
+Lets create the __playerScoreDiv__
+* Inside this div we want a __h3__ tag with __YOU__ inside it
+* We also want a __div__ tag inside this which contacts the score and has an id of __playerScore__
+
+
+Your should add the following html code.
+
+
+````html
+
+  <div id="playerScoreDiv">
+             	<h3>YOU</h3>
+            	<div id="playerScore">0</div>
+        </div>
+
+````
+
+Lets open __style.css__ and style this.  Note as there is alot of similar properties with
+__computerScoreDiv__ we are going to share the css values by putting a __comma__ between them as shown below
+
+
+````css
+
+div#playerScoreDiv
+{
+	right: 20px;
+	text-align: center;
+}
+
+#computerScoreDiv,#playerScoreDiv
+{
+	position: absolute;
+	bottom: 20px;
+	color: #FFF;
+	width: 200px;
+	opacity: .8;
+	font-size: 100px
+}
+
+````
+
+The __index.html__ page should now have these additional tags inside the __body__
+
+````html
+
+<div id="computerScoreDiv">
+                <h3>COMPUTER</h3>
+                <div id="computerScore">0</div>	
+         </div>
+         <div id="playerScoreDiv">
+             	<h3>YOU</h3>
+            	<div id="playerScore">0</div>
+        </div>
+
+````
+
+The __style.css__ should now have these additional styles
+ 
+````css
+
+#computerScoreDiv
+{
+	left: 20px;
+	text-align: center;
+}
+
+#playerScoreDiv
+{
+	right: 20px;
+	text-align: center;
+}
+
+#computerScoreDiv,#playerScoreDiv
+{
+	position: absolute;
+	bottom: 20px;
+	color: #FFF;
+	width: 200px;
+	opacity: .8;
+	font-size: 100px
+}
+
+h3 {
+	margin: 0px;
+	font-size: 25px;
+}
+````
 
 Questions
 -------
@@ -479,4 +691,4 @@ Lets do a recap of keep learning objectives here
 * Explain if / else statements?
 * How do you add an __OR__ condition inside your if statement?
 * How do you return a value from a function?
-
+* How do you share css styling for two html tags?

@@ -198,10 +198,7 @@ function save() {
 		
 	var ballLeft = parseInt(ball.css('left'));
 	var ballRight = parseInt(ballLeft)+ballWidth;
-		
-	alert(keeperLeft + ' - ' + keeperRight + ' ' + ballLeft +
-		' ' + ballRight);
-		
+			
 	if(isGoal(ballLeft, ballRight, keeperLeft, keeperRight)) {
 		alert('Score');
 	} else {
