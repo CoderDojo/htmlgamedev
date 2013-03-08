@@ -353,12 +353,12 @@ Is it a goal?
 --------
 
 We are happy with our position values returned and its now time to see if we have actually saved the shoot or has a goal been scored.  So
-we will get started by creating a new function for this call __isGoal__
+we will get started by creating a new function for this call __isScore__
 
 Can you create this function
 
 ````javascript
-function isGoal() {
+function isScore() {
 
 }
 ````
@@ -383,7 +383,7 @@ __NOTE__
 You can add multiple variable to a function as long as they are separated with a comma __,__
 
 ````javascript
-function isGoal(keeperLeft, keeperRight, ballLeft, ballRight) {
+function isScore(keeperLeft, keeperRight, ballLeft, ballRight) {
 
 }
 ````
@@ -397,17 +397,17 @@ __OR__
 
 * if ballLeft is greater than keeperRight 
 
-So lets program these conditions, would you agree its time to use __if__ statement, what is the first if condition inside our __isGoal__
+So lets program these conditions, would you agree its time to use __if__ statement, what is the first if condition inside our __isScore__
 function
 
 ````javascript
 	if((ballRight < keeperLeft))
 ````
 
-The __isGoal__ function should now look like this
+The __isScore__ function should now look like this
 
 ````javascript
-function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
+function isScore(ballLeft, ballRight, keeperLeft, keeperRight) {
 	if((ballRight < keeperLeft)) {
 	
 	}
@@ -428,10 +428,10 @@ With the two __||__ we need to update our if statement to check if the __ballLef
 	 (ballLeft > keeperRight))
 ````
 
-Our __isGoal__ function should now look like this after we add the __{}__ around our if statement
+Our __isScore__ function should now look like this after we add the __{}__ around our if statement
 
 ````javascript
-function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
+function isScore(ballLeft, ballRight, keeperLeft, keeperRight) {
 	if((ballRight < keeperLeft) ||
 			(ballLeft > keeperRight)) {
 	}
@@ -445,7 +445,7 @@ scored otherwise __false__ if was saved.  To return true on our __if__ condition
 our __if__ block.
 
 ````javascript
-function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
+function isScore(ballLeft, ballRight, keeperLeft, keeperRight) {
 	if((ballRight < keeperLeft) ||
 			(ballLeft > keeperRight)) {
 			return true;
@@ -456,10 +456,10 @@ function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
 However we need to also return false if its saved by the keeper, I think we can do this with an else statement and adding
 ```` return false; ````.  
 
-The __isGoal__ function should now look like this.
+The __isScore__ function should now look like this.
 
 ````javascript
-function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
+function isScore(ballLeft, ballRight, keeperLeft, keeperRight) {
 	if((ballRight < keeperLeft) ||
 			(ballLeft > keeperRight)) {
 			return true;
@@ -471,7 +471,7 @@ function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
 
 Don't worry we will come back to understanding if goal or point scored later.
 
-### Call the isGoal function in our code
+### Call the isScore function in our code
 
 Great we have just created this cool function to check if a goal has being scored, but we are not calling in our code, can you
 tell me which method we should call it from?
@@ -480,7 +480,7 @@ tell me which method we should call it from?
 So lets go to that function and call our new function.  
 
 ````javascript
-	isGoal(ballLeft, ballRight, keeperLeft, keeperRight)
+	isScore(ballLeft, ballRight, keeperLeft, keeperRight)
 ````
 
 __NOTE__ 
@@ -493,7 +493,7 @@ How we are passing in the variables we created in the the __save__ function
 Lets put an alert around this function so we can see the returned value on screen
 
 ````javascript
-	alert(isGoal(ballLeft, ballRight, keeperLeft, keeperRight));
+	alert(isScore(ballLeft, ballRight, keeperLeft, keeperRight));
 ````
 
 The __save__ function should now look like this
@@ -510,13 +510,13 @@ function save() {
 	alert(keeperLeft + ' - ' + keeperRight + ' ' + ballLeft +
 		' ' + ballRight);
 		
-	alert(isGoal(ballLeft, ballRight, keeperLeft, keeperRight));
+	alert(isScore(ballLeft, ballRight, keeperLeft, keeperRight));
 }
 ````
 
 Can you tell me did __true__ or __false__ appear on your screen? And what do each of these mean?
 
-Its now time to remove our first alert and put an __if / else__ condition around the __isGoal__ function.
+Its now time to remove our first alert and put an __if / else__ condition around the __isScore__ function.
 * Inside the __if__ block we will put an __alert__ telling you scored
 * Inside __else__ condition we will put __alert__ tell you the shot was saved
 
@@ -529,13 +529,131 @@ function save() {
 	var ballLeft = parseInt(ball.css('left'));
 	var ballRight = parseInt(ballLeft)+ballWidth;
 			
-	if(isGoal(ballLeft, ballRight, keeperLeft, keeperRight)) {
+	if(isScore(ballLeft, ballRight, keeperLeft, keeperRight)) {
 		alert('Score');
 	} else {
 		alert('Saved');
 	}
 }
 ````
+
+Is it a point or goal
+---------
+
+Ok can you tell me if we have saved a point or a goal? Have we written the code to handle this? I don't think so
+lets review what keeper positions we are checking against
+* keeper left
+* keeper right
+
+Would you think we need to evaluate against top or bottom, what if keeper was flying and ball went under him, well that
+would be a goal, what if the ball went over the keeper then that a point.  So we need add this check to our code.  So lets
+review what positions we need
+* Keeper left
+* Keeper right
+* Keeper top
+* Keeper bottom
+* Ball left
+* Ball right
+* Ball top
+* Ball bottom
+
+Lets think how we need them
+* If ball right is less than keeper left
+* If ball left is greater keeper right
+* If ball top is less than keeper bottom
+* If ball bottom is greater than keeper top
+
+Do you think we should create a function for each of these? Well its a great idea, so lets go function writing
+
+#### If ball right is less than keeper left
+
+Using the __ballRight__ and __keeperLeft__ variables
+* Create __if__ condition
+* if __keeperLeft__ is greater than __>__ __ballRight__
+* return __true__
+* else return __false__
+
+````javascript
+function isBallOutsideLeft(ballRight, keeperLeft) {
+	if(keeperLeft > ballRight) {
+		return true;
+	} else {
+		return false;
+	}
+}
+````
+
+
+#### If ball left is greater keeper right
+
+Using the __ballLeft__ and __keeperRight__ variables
+* Create __if__ condition
+* if __keeperRight__ is less than __<__ __ballLeft__
+* return __true__
+* else return __false__
+
+````javascript
+function isBallOutsideRight(ballLeft, keeperRight) {
+	if(keeperRight < ballLeft) {
+		return true;
+	} else {
+		return false;
+	}
+}
+````
+
+
+#### If ball top is less than keeper bottom
+
+Using the __ballBottom__ and __keeperTop__ variables
+* Create __if__ condition
+* if __keeperTop__ is less than __<__ __ballBottom__
+* return __true__
+* else return __false__
+
+````javascript
+function isBallOutsideTop(ballBottom, keeperTop) {
+	if(keeperTop < ballBottom) {
+		return true;
+	} else {
+		return false;
+	}
+}
+````
+
+#### If ball bottom is greater than keeper top
+
+Using the __ballTop__ and __keeperBottom__ variables
+* Create __if__ condition
+* if __keeperBottom__ is greater than __>__ __ballTop__
+* return __true__
+* else return __false__
+
+````javascript
+function isBallOutsideBottom(ballTop, keeperBottom) {
+	if(keeperBottom > ballTop) {
+		return true;
+	} else {
+		return false;
+	}
+}
+````
+
+#### Update the isScore function
+
+Great we have just created 4 great functions, it time to join them all together in the 
+__isScore__ function
+
+Lets think how we need them
+* If ball right is less than keeper left
+__OR__
+* If ball left is greater keeper right
+
+__AND__ 
+
+* If ball top is less than keeper bottom
+__OR__
+* If ball bottom is greater than keeper top
 
 Add some scores
 --------
@@ -651,7 +769,7 @@ The __index.html__ page should now have these additional tags inside the __body_
 
 ````
 
-The __style.css__ should now have these additional styles
+The __style.css__ should now have these additional styles		
  
 ````css
 

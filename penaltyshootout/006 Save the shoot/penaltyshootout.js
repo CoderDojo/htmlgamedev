@@ -25,7 +25,7 @@ function handleKey(e) {
 
 //keeper variables
 var keeper;
-var keeperWidth=150;
+var keeperWidth=120;
 
 var goalWidth;
 var leftMovePixels=1;
@@ -195,23 +195,72 @@ function save() {
 		
 	var keeperLeft = parseInt(keeper.css('left'));
 	var keeperRight = keeperLeft+keeperWidth;
+	var keeperTop = parseInt(keeper.css('top'));
+	var keeperBottom = keeperTop + keeperWidth;
 		
 	var ballLeft = parseInt(ball.css('left'));
 	var ballRight = parseInt(ballLeft)+ballWidth;
-			
-	if(isGoal(ballLeft, ballRight, keeperLeft, keeperRight)) {
-		alert('Score');
+	var ballTop = parseInt(ball.css('top'));
+	var ballBottom = ballTop + ballWidth;
+	
+	console.log('ballLeft ' + ballLeft);
+	console.log('ballRight ' + ballRight);
+	console.log('keeperLeft ' + keeperLeft);
+	console.log('keeperRight ' + keeperRight);
+	console.log('ballTop ' + ballTop);
+	console.log('keeperTop ' + keeperTop);
+	console.log('keeperBottom ' + keeperBottom);
+	console.log('ballBottom ' + ballBottom);
+	
+	if(isScore(ballLeft, ballRight, keeperLeft, keeperRight, ballTop,
+		keeperTop, keeperBottom, ballBottom)) {
+		alert('Score ...............	');		
 	} else {
 		alert('Saved');
 	}
 }
 
-function isGoal(ballLeft, ballRight, keeperLeft, keeperRight) {
-	if((ballRight < keeperLeft) ||
-			(ballLeft > keeperRight)) {
+function isScore(ballLeft, ballRight, keeperLeft, keeperRight, ballTop, keeperTop,
+				keeperBottom, ballBottom) {
+	if((isBallOutsideLeft(ballRight, keeperLeft)
+	|| isBallOutsideRight(ballLeft, keeperRight))
+	&& (isBallOutsideTop(ballBottom, keeperTop) 
+	|| isBallOutsideBottom(ballTop, keeperBottom))) {
 		return true;
 	}
 	else {
 		return false;
 	} 
+}
+
+function isBallOutsideLeft(ballRight, keeperLeft) {
+	if(keeperLeft > ballRight) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isBallOutsideRight(ballLeft, keeperRight) {
+	if(keeperRight < ballLeft) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isBallOutsideTop(ballBottom, keeperTop) {
+	if(keeperTop < ballBottom) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isBallOutsideBottom(ballTop, keeperBottom) {
+	if(keeperBottom > ballTop) {
+		return true;
+	} else {
+		return false;
+	}
 }
