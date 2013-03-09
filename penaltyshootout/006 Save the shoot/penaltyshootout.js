@@ -202,26 +202,41 @@ function save() {
 	var ballRight = parseInt(ballLeft)+ballWidth;
 	var ballTop = parseInt(ball.css('top'));
 	var ballBottom = ballTop + ballWidth;
-	
-	console.log('ballLeft ' + ballLeft);
-	console.log('ballRight ' + ballRight);
-	console.log('keeperLeft ' + keeperLeft);
-	console.log('keeperRight ' + keeperRight);
-	console.log('ballTop ' + ballTop);
-	console.log('keeperTop ' + keeperTop);
-	console.log('keeperBottom ' + keeperBottom);
-	console.log('ballBottom ' + ballBottom);
-	
+
 	if(isScore(ballLeft, ballRight, keeperLeft, keeperRight, ballTop,
 		keeperTop, keeperBottom, ballBottom)) {
-		alert('Score ...............	');		
+		
+		if(isGoal()) {
+			alert('Goal ...............	');	
+		}
+		else if(isPoint()){
+			alert('Point ..........');
+		}
 	} else {
 		alert('Saved');
 	}
 }
 
+function isGoal() {
+	
+	if(topStopPoint == goalTop) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function isPoint() {
+	if(topStopPoint == pointTop) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 function isScore(ballLeft, ballRight, keeperLeft, keeperRight, ballTop, keeperTop,
-				keeperBottom, ballBottom) {
+				keeperBottom, ballBottom) {	
+	
 	if((isBallOutsideLeft(ballRight, keeperLeft)
 	|| isBallOutsideRight(ballLeft, keeperRight))
 	&& (isBallOutsideTop(ballBottom, keeperTop) 

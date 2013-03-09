@@ -537,7 +537,7 @@ function save() {
 }
 ````
 
-Is it a point or goal
+But you can score points or goals?
 ---------
 
 Ok can you tell me if we have saved a point or a goal? Have we written the code to handle this? I don't think so
@@ -562,6 +562,36 @@ Lets think how we need them
 * If ball left is greater keeper right
 * If ball top is less than keeper bottom
 * If ball bottom is greater than keeper top
+
+
+#### Get more ball and keeper positions
+
+Before we were just checking the __ball__ left and right and the __keeper__ left and right, however this is a
+gaelic game and we need to know whether is a point to goal so we need to create 4 more variables in the __save__
+function?  We just discussed them above, can you think of what they are?
+
+* keeperTop
+* keeperBottom
+* ballTop
+* ballBottom
+
+So lets add them to the __save__ function
+
+````javascript
+function save() {
+		
+	var keeperLeft = parseInt(keeper.css('left'));
+	var keeperRight = keeperLeft+keeperWidth;
+	var keeperTop = parseInt(keeper.css('top'));
+	var keeperBottom = keeperTop + keeperWidth;
+		
+	var ballLeft = parseInt(ball.css('left'));
+	var ballRight = parseInt(ballLeft)+ballWidth;
+	var ballTop = parseInt(ball.css('top'));
+	var ballBottom = ballTop + ballWidth;
+
+}
+````
 
 Do you think we should create a function for each of these? Well its a great idea, so lets go function writing
 
@@ -654,6 +684,163 @@ __AND__
 * If ball top is less than keeper bottom
 __OR__
 * If ball bottom is greater than keeper top
+
+
+Now we can update our isScore function for each of these __if__ conditions
+
+
+````javascript
+function isScore(ballLeft, ballRight, keeperLeft, keeperRight, ballTop, keeperTop,
+				keeperBottom, ballBottom) {	
+	
+	if((isBallOutsideLeft(ballRight, keeperLeft) || isBallOutsideRight(ballLeft, keeperRight))
+		&& (isBallOutsideTop(ballBottom, keeperTop) || isBallOutsideBottom(ballTop, keeperBottom))) {
+	
+	}
+}
+````
+
+Great we have created the if condition, would you all agree its easier to understand now we have created
+a function for each check? So lets code inside our our __if__ condition.
+
+This function is returning a __boolean__ so it can only be __true__ or __false__, if the ball is outside 
+what should we __return__? Yes you are right __true__
+
+
+````javascript
+function isScore(ballLeft, ballRight, keeperLeft, keeperRight, ballTop, keeperTop,
+				keeperBottom, ballBottom) {	
+	
+	if((isBallOutsideLeft(ballRight, keeperLeft)|| isBallOutsideRight(ballLeft, keeperRight))
+		&& (isBallOutsideTop(ballBottom, keeperTop) || isBallOutsideBottom(ballTop, keeperBottom))) {
+		return true;
+	}
+}
+````
+
+Remember we said this function is __boolean__ and will return either __true__ or __false__ would you agree
+then that we should also put in an __else__ statement to return __false__.  Well lets go ahead an add one.
+
+````javascript
+function isScore(ballLeft, ballRight, keeperLeft, keeperRight, ballTop, keeperTop,
+				keeperBottom, ballBottom) {	
+	
+	if((isBallOutsideLeft(ballRight, keeperLeft)|| isBallOutsideRight(ballLeft, keeperRight))
+		&& (isBallOutsideTop(ballBottom, keeperTop) || isBallOutsideBottom(ballTop, keeperBottom))) {
+		return true;
+	}
+	else {
+		return false;
+	} 
+}
+````
+
+Refresh your browsers and we can see our new function in action.  Great our isScore function is looking 
+really good however we need to update the __save__ function to give us a more useful piece of information. 
+
+
+````javascript
+function save() {
+		
+	var keeperLeft = parseInt(keeper.css('left'));
+	var keeperRight = keeperLeft+keeperWidth;
+	var keeperTop = parseInt(keeper.css('top'));
+	var keeperBottom = keeperTop + keeperWidth;
+		
+	var ballLeft = parseInt(ball.css('left'));
+	var ballRight = parseInt(ballLeft)+ballWidth;
+	var ballTop = parseInt(ball.css('top'));
+	var ballBottom = ballTop + ballWidth;
+
+	if(isScore(ballLeft, ballRight, keeperLeft, keeperRight, ballTop,
+		keeperTop, keeperBottom, ballBottom)) {
+		alert('Score ...............');
+	} else {
+		alert('Saved');
+	}
+}
+````
+
+Lets refresh your browser and see if you can score
+
+#### Add point or goal functionality
+
+Can you tell me how we know whether we have scored a goal or point, what variables are we using for that? Yes you are
+right
+* goalTop
+* pointTop
+* topStopPoint
+
+Can you tell me the conditions using these variables that mean we scored a goal or a point?
+
+__GOAL__
+* If __goalTop__ equals __topStopPoint__
+
+Let's create a function for this returning a __boolean__, see can you write the function for 
+using the __if__ condition we just discussed.
+
+````javascript
+
+function isGoal() {
+	
+	if(topStopPoint == goalTop) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+````
+
+__POINT__
+* If __pointTop__ equals __topStopPoint__
+
+Lets create a function for this returning a __boolean__, see can you write the function for 
+using the __if__ condition we just discussed.
+
+````javascript
+function isPoint() {
+	if(topStopPoint == pointTop) {
+		return true;
+	} else {
+		return false;
+	}
+}
+````
+
+We can now use these great new function in our __save__ function and alert a message telling us if we
+scored a point or a goal.
+
+This will be added inside the __isScore__ __if__ condition? As these is the code used to handle when we score.
+
+````javascript
+function save() {
+		
+	var keeperLeft = parseInt(keeper.css('left'));
+	var keeperRight = keeperLeft+keeperWidth;
+	var keeperTop = parseInt(keeper.css('top'));
+	var keeperBottom = keeperTop + keeperWidth;
+		
+	var ballLeft = parseInt(ball.css('left'));
+	var ballRight = parseInt(ballLeft)+ballWidth;
+	var ballTop = parseInt(ball.css('top'));
+	var ballBottom = ballTop + ballWidth;
+
+	if(isScore(ballLeft, ballRight, keeperLeft, keeperRight, ballTop,
+		keeperTop, keeperBottom, ballBottom)) {
+		
+		if(isGoal()) {
+			alert('Goal ...............	');	
+		}
+		else if(isPoint()){
+			alert('Point ..........');
+		}
+	} else {
+		alert('Saved');
+	}
+}
+````
+
 
 Add some scores
 --------
