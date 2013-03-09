@@ -48,8 +48,31 @@ We always add variables to the very top of the page when you open your JavaScrip
 see all your variables in the one place.  If you do this in every JavaScript file you create, it will make your 
 life easier as you will know where you have created your variables
 
+#### NOTE
+You variable name should explain what the variable is, so when you look
+at your code you know straight away what it is.
+
+Create your first function
+----
+Functions are acivities that do one only.  Think of a game every time you press a key
+it causes an activity which is handled by the function.
+
+A function has the following rules
+* starts with the word function
+* then the function name (you can put what ever name you want, no spaces through)
+* now put the open and close brackets ()
+* add the open backet for your function {
+* close your function with }
+
+````javascript
+function setup() {
+
+}
+````
+
 __NOTE__
 If we create variables at the top of file outside functions means these variables can be used anywhere in the javascript.
+
 
 You file should now look like this.
 
@@ -328,7 +351,6 @@ To set the balloon width use
 balloon.style.width = width + 'px';
 ````
 
-
 ````javascript
 function blow() {
 	var width = parseInt(balloon.style.width);
@@ -336,7 +358,11 @@ function blow() {
 	balloon.style.width = width + 'px';
 }
 ```` 
- 
+
+Stop the balloon growing 
+--------
+Great are balloon is now huge but who feels its too big? Its time to put a stop to this
+
 
 
 Questions

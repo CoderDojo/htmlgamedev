@@ -1,6 +1,7 @@
 
 var balloon;
 var increaseBy = 50;
+var currentBlow;
 
 function loadGame() {
 	balloon = document.getElementById("balloon");
