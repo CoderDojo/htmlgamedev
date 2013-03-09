@@ -761,7 +761,23 @@ function save() {
 }
 ````
 
-Lets refresh your browser and see if you can score
+Lets refresh your browser and see if you can score.
+
+#### Reduce the keepers size
+
+Does anyone else now think the goal keepers is too big? Its really hard to score with that guy.  We currently
+have set the __keeperWidth__ to 150, how about we change it to 120.  This variable is at the top of penaltyshootout.js
+
+
+Current value
+````javascript
+var keeperWidth=150;
+````
+
+Change to
+````javascript
+var keeperWidth=120;
+````
 
 #### Add point or goal functionality
 
