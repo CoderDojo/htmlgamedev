@@ -53,6 +53,12 @@ var topStopPoint = goalTop;
 
 var arrowImage;
 
+var playerGoal;
+var playerPoint;
+var keeperGoal;
+var keeperPoint;
+var playerScore;
+var keeperScore;
 
 function setup() {
 
@@ -72,11 +78,15 @@ function setupVariables() {
 	
 	rooneyKick = $("#rooneyKick");
 	arrowImage = $("#arrowImage");
+	
+	playerScore = $("#playerScore");
+	keeperScore = $("#keeperScore");
 }
 
 function commenceGame() {
 	setupHtmlPositions();
 	startKeeper();
+	resetScores();
 }
 
 //setupHtmlPositions
@@ -90,6 +100,14 @@ function startKeeper() {
 	keeper.css('width',keeperWidth+'px');
 	keeper.show();
 	moveKeeper();
+}
+
+function resetScores() {
+	playerGoal = 0;
+	playerPoint = 0;
+	keeperGoal = 0;
+	keeperPoint = 0;
+	updateScores();
 }
 
 function moveKeeper() {
@@ -207,13 +225,18 @@ function save() {
 		keeperTop, keeperBottom, ballBottom)) {
 		
 		if(isGoal()) {
-			alert('Goal ...............	');	
+			handleGoalScored();	
+		}
+		else if(isPoint()){
+			//handlePointScored();
+		}
+	} else {
+		if(isGoal()) {
+			alert('Saved	');	
 		}
 		else if(isPoint()){
 			alert('Point ..........');
 		}
-	} else {
-		alert('Saved');
 	}
 }
 
@@ -278,4 +301,15 @@ function isBallOutsideBottom(ballTop, keeperBottom) {
 	} else {
 		return false;
 	}
+}
+
+function updateScores() {
+	alert(playerScore.val());
+	playerScore.val(playerGoal+'-'+playerPoint);
+	keeperScore.val(keeperGoal+'-'+keeperPoint);
+}
+
+function handleGoalScored() {
+	playerGoal = playerGoal + 1;
+	alert(playerGoal);
 }

@@ -351,6 +351,8 @@ To set the balloon width use
 balloon.style.width = width + 'px';
 ````
 
+Now add this to the blow function
+
 ````javascript
 function blow() {
 	var width = parseInt(balloon.style.width);
@@ -361,8 +363,234 @@ function blow() {
 
 Stop the balloon growing 
 --------
-Great are balloon is now huge but who feels its too big? Its time to put a stop to this
+Great are balloon is now huge but who feels its too big? Its time 
+to put a stop to this.  You are about to learn a really
+exciting element in coding known as logic, this allows us
+run code under a defined condition.
 
+So can you think of a condition we need? How about one 
+where we set the max number of blows you can blow the 
+balloon.
+
+To do this what do you need, how about a variable 
+* for the number to tell us how many times we have blown the balloon
+__AND__
+* for the max number of times the ball can be blown
+
+We will create these variables on the top of __balloon.js__
+
+````javascript 
+var currentBlow = 0;
+var maxBlows = 10;
+````
+
+__balloon.js__ should now look like this with our two need variables
+
+````javascript
+
+var balloon;
+var increaseBy = 50;
+var currentBlow = 0;
+var maxBlows = 10;
+
+function loadGame() {
+	balloon = document.getElementById("balloon");
+	balloon.style.width = "150px"
+}
+
+function blow() {
+	var width = parseInt(balloon.style.width);
+	width = width + increaseBy; 
+	balloon.style.width = width;
+}
+
+````
+
+Great lets update the __blow__ function by stopping it when
+we get to 10 blows
+
+##### if statements
+if statements in code allow use to execute only a small set of code
+under certain conditions we define after the if statement.
+
+In our example here we want the to say __"if the current
+blow is less than 10 then blow"__ This can 
+be done with the following if statement
+
+````javascript
+if(currentBlow < maxBlows) {
+````
+
+if statements start with if then round backets with conditions inside 
+them the code we want to run when this condition is met is inside
+the brackets { }
+
+So lets add this to the blow function.  We want to add
+this condition around all of the code, as once we have blown
+10 times.  We __don't__ need to get the width, increase the size or 
+set a new width.
+
+__NOTE__
+Can you remember what we put at the end of each line? Yes you are right __;__
+
+````javascript
+	
+function blow() {
+	if(currentBlow < maxBlows) {
+		var width = parseInt(balloon.style.width);
+		width = width + increaseBy; 
+		balloon.style.width = width;
+	}
+}
+
+````
+
+Now refresh your browser and does the balloon stop at 10? __No__ why?
+Does the currentBlow ever get bigger than 0? We need to add one every time. So
+lets jump into some maths,
+
+````javascript
+currentBlow = currentBlow + 1;
+````
+
+Add this above our __if__ condition like so
+
+````javascript
+	
+function blow() {
+	currentBlow = currentBlow + 1;
+	if(currentBlow < maxBlows) {
+		var width = parseInt(balloon.style.width);
+		width = width + increaseBy; 
+		balloon.style.width = width;
+	}
+}
+
+````
+
+Refresh your browser and watch the magic, is everyones balloon now stopping at 10 blows? Did everyone count
+to 10 ok, some times it easy to lose count.	
+
+##### else statements
+__if__ statements run if condition is met, but if it is not then we can
+call an __else__ statement.  This means only the code inside the __if__ or the __else__
+will run at each blow.  The __else__ must come immediately after the __if__ statements closing bracket __}__
+
+How about when we reach 10 blows the balloon disappears?
+
+In simple __else__ statement we only use __else__ followed by bracket __{__ like this
+
+````javascript
+else {
+
+}
+````
+
+Lets add this to the blow function and see what happens, nothing? why? Ye we have not told the balloon to 
+disappear, so lets first print a message on the screen using ```` alert ````
+
+````javascript
+else {
+	alert('Hey I am in the else statement and you have blown the balloon' + currentBlow);
+}
+````
+
+
+````javascript	
+function blow() {
+	currentBlow = currentBlow + 1;
+	if(currentBlow < maxBlows) {
+		var width = parseInt(balloon.style.width);
+		width = width + increaseBy; 
+		balloon.style.width = width;
+	} else {
+	
+	}
+}
+````
+
+Refresh your browser blow and see if it the balloon disappears.
+
+## Add a counter for blows
+
+Lets put a cool counter on our webpage.  So open __index.html__
+
+So we want to add a new section what html tag do we start with. Create a new __div__ and give it
+and __id__ of __blowCounter__ 
+
+````html
+<div id="blowCounter">
+	<span id="count">0</span>
+</div>
+````
+
+Add this inside the __body__ tag below the __balloon__ __div__
+
+````html
+<body onload="loadGame()">
+		<h1>CoderDojo Balloon Game - Blow it Up </h1>
+		
+		<div id="balloon" >
+			<img src="coder.png" onclick="blow()"/>
+		</div>
+		
+		<div id="blowCounter">
+			<span id="count">0</span>
+		</div>
+	
+	</body>
+````
+
+Refresh and take a look is there something wrong with our counter?
+Does it look cool enough for CoderDojo?
+
+How about we style this, what file should we open? Ye __style.css__ So lets
+think how we start? We want to style the __div__
+
+* Start with __tag name__
+* Then put a __hash__
+* Now the __id__
+* Then put brackets around it __{ }__
+
+````css
+div#blowCounter {
+		
+}
+````
+
+#### Move it to the right hand side
+
+
+````css
+div#blowCounter {
+	right: 10px;
+}
+````
+
+
+#### Move it to the right hand side
+
+
+````css
+div#blowCounter {
+	right: 10px;
+}
+````
+
+Now refresh, has it moved right? How do we set absolute positions?
+
+
+
+#### Make the font bigger
+
+Set the __font-size__ to 60 pixels
+
+````css
+div#blowCounter {
+	right: 10px;
+	font-size: 60px;
+}
+````
 
 
 Questions

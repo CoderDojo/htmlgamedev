@@ -10,3 +10,8 @@ img {
 div#balloon {
 	width: 150px;
 }
+
+div#blowCounter {
+	right: 10px;
+	font-size: 60px;
+}
