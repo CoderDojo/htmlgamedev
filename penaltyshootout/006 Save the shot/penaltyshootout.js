@@ -25,7 +25,7 @@ function handleKey(e) {
 
 //keeper variables
 var keeper;
-var keeperWidth=120;
+var keeperWidth=130;
 
 var goalWidth;
 var leftMovePixels=1;
@@ -225,18 +225,13 @@ function save() {
 		keeperTop, keeperBottom, ballBottom)) {
 		
 		if(isGoal()) {
-			handleGoalScored();	
+			alert('Goal');
 		}
 		else if(isPoint()){
-			//handlePointScored();
+			alert('Point');
 		}
 	} else {
-		if(isGoal()) {
-			alert('Saved	');	
-		}
-		else if(isPoint()){
-			alert('Point ..........');
-		}
+		alert('Saved');
 	}
 }
 
@@ -261,8 +256,8 @@ function isScore(ballLeft, ballRight, keeperLeft, keeperRight, ballTop, keeperTo
 				keeperBottom, ballBottom) {	
 	
 	if((isBallOutsideLeft(ballRight, keeperLeft)
-	|| isBallOutsideRight(ballLeft, keeperRight))
-	&& (isBallOutsideTop(ballBottom, keeperTop) 
+	|| isBallOutsideRight(ballLeft, keeperRight)
+	|| isBallOutsideTop(ballBottom, keeperTop)
 	|| isBallOutsideBottom(ballTop, keeperBottom))) {
 		return true;
 	}
@@ -273,6 +268,8 @@ function isScore(ballLeft, ballRight, keeperLeft, keeperRight, ballTop, keeperTo
 
 function isBallOutsideLeft(ballRight, keeperLeft) {
 	if(keeperLeft > ballRight) {
+		console.log('left true ' + ballRight + ' ' 
+		+ keeperLeft);
 		return true;
 	} else {
 		return false;
@@ -281,6 +278,8 @@ function isBallOutsideLeft(ballRight, keeperLeft) {
 
 function isBallOutsideRight(ballLeft, keeperRight) {
 	if(keeperRight < ballLeft) {
+		console.log('right true ' + ballLeft + ' ' 
+		+ keeperRight);
 		return true;
 	} else {
 		return false;
@@ -288,7 +287,9 @@ function isBallOutsideRight(ballLeft, keeperRight) {
 }
 
 function isBallOutsideTop(ballBottom, keeperTop) {
-	if(keeperTop < ballBottom) {
+	if(ballBottom < keeperTop) {
+	console.log('top true ' + ballBottom + ' ' 
+		+ keeperTop);
 		return true;
 	} else {
 		return false;
@@ -296,7 +297,9 @@ function isBallOutsideTop(ballBottom, keeperTop) {
 }
 
 function isBallOutsideBottom(ballTop, keeperBottom) {
-	if(keeperBottom > ballTop) {
+	if(keeperBottom < ballTop) {
+	console.log('bottom true ' + ballTop + ' ' 
+		+ keeperBottom);
 		return true;
 	} else {
 		return false;
@@ -304,12 +307,10 @@ function isBallOutsideBottom(ballTop, keeperBottom) {
 }
 
 function updateScores() {
-	alert(playerScore.val());
 	playerScore.val(playerGoal+'-'+playerPoint);
 	keeperScore.val(keeperGoal+'-'+keeperPoint);
 }
 
 function handleGoalScored() {
 	playerGoal = playerGoal + 1;
-	alert(playerGoal);
 }

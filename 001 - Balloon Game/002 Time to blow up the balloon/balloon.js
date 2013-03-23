@@ -16,6 +16,6 @@ function blow() {
 		width = width + increaseBy; 
 		balloon.style.width = width;
 	} else {
-		alert('Hey I am in the else statement and you have blown the balloon ' + currentBlow);
+		balloon.style.display = 'none';
 	}
 }

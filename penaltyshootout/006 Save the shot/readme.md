@@ -633,17 +633,17 @@ function isBallOutsideRight(ballLeft, keeperRight) {
 ````
 
 
-#### If ball top is less than keeper bottom
+#### If ball bottom is less than keeper top
 
 Using the __ballBottom__ and __keeperTop__ variables
 * Create __if__ condition
-* if __keeperTop__ is less than __<__ __ballBottom__
+* if __ballBottom__ is less than __<__ __keeperTop__
 * return __true__
 * else return __false__
 
 ````javascript
 function isBallOutsideTop(ballBottom, keeperTop) {
-	if(keeperTop < ballBottom) {
+	if(ballBottom < keeperTop) {
 		return true;
 	} else {
 		return false;
@@ -651,17 +651,17 @@ function isBallOutsideTop(ballBottom, keeperTop) {
 }
 ````
 
-#### If ball bottom is greater than keeper top
+#### If ball top is less than keeper bottom
 
 Using the __ballTop__ and __keeperBottom__ variables
 * Create __if__ condition
-* if __keeperBottom__ is greater than __>__ __ballTop__
+* if __keeperBottom__ is less than __<__ __ballTop__
 * return __true__
 * else return __false__
 
 ````javascript
 function isBallOutsideBottom(ballTop, keeperBottom) {
-	if(keeperBottom > ballTop) {
+	if(keeperBottom < ballTop) {
 		return true;
 	} else {
 		return false;

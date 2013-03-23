@@ -486,6 +486,23 @@ else {
 }
 ````
 
+Your blow function should now look like this.
+
+````javascript	
+function blow() {
+	currentBlow = currentBlow + 1;
+	if(currentBlow < maxBlows) {
+		var width = parseInt(balloon.style.width);
+		width = width + increaseBy; 
+		balloon.style.width = width;
+	} else {
+		
+	}
+}
+````
+
+Refresh your browser blow and see if it the balloon disappears.
+
 Lets add this to the blow function and see what happens, nothing? why? Ye we have not told the balloon to 
 disappear, so lets first print a message on the screen using ```` alert ````
 
@@ -494,6 +511,24 @@ else {
 	alert('Hey I am in the else statement and you have blown the balloon' + currentBlow);
 }
 ````
+
+#### Make the balloon disappear
+
+You have a great __else__ statement and you now want to hide the balloon for 
+when it blows.  To do this we are going to change the style
+with the java script using ```` display```` property.  So to set
+the display we
+
+* start with __variable__ name ```` balloon ````
+* then add __dot__ and ````style```` to change the style of the element
+* add __dot__ ad property we want to change ````display ```
+* set the value __equal__ to ````none````
+
+````javascript
+balloon.style.display = 'none';
+````
+
+Now add this to your ```` else ```` statement and refresh your browser.
 
 
 ````javascript	
@@ -504,12 +539,11 @@ function blow() {
 		width = width + increaseBy; 
 		balloon.style.width = width;
 	} else {
-	
+		balloon.style.display = 'none';
 	}
 }
 ````
 
-Refresh your browser blow and see if it the balloon disappears.
 
 ## Add a counter for blows
 
