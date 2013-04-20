@@ -9,14 +9,22 @@
 	<body onload="loadGame()">
 		<h1>CoderDojo Balloon Game - Blow it Up </h1>
 		
-		<div id="balloon" >
+		<div id="balloon">
 			<img src="coder.png" onclick="blow()"/>
 		</div>
 		
+		<div id="boom">
+			<img src="boom.png"/>
+		</div>
+		
 		<div id="blowCounter">
-			<span id="count">0</span>
+			<span>Blow</span>
+			<br/>
+			<h3 id="count">0</h3>
 		</div>
 	
+		<button id="tie" onclick="tieBalloon()">Tie it</button>
+
 	</body>
 	
 </html>

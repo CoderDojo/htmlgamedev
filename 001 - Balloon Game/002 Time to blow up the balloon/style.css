@@ -3,15 +3,41 @@ body {
 	color: white;
 }
 
-img {
-	width: 100%;
-}
-
 div#balloon {
 	width: 150px;
 }
 
+img {
+	width: 100%;
+}
+
 div#blowCounter {
-	right: 10px;
-	font-size: 60px;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	font-size: 40px;	
+	background: white;
+	border: solid thin yellow;
+	color: orange;
+ 	height: 100px;
+ 	width: 200px;
+ 	text-align: center;
+}
+
+h3 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+button#tie {
+	position: absolute;
+	right: 20px;
+	top: 140px;
+	font-size: 40px;	
+	background: navy;
+	border: solid thin yellow;
+	color: orange;
+ 	height: 60px;
+ 	width: 200px;
+ 	text-align: center;
 }
