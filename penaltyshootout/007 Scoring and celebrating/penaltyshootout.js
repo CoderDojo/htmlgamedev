@@ -16,16 +16,16 @@ function handleKey(e) {
     	rooneyStart();
     } else if(keyCode == 38) { // up arrow
 		kickPoint();
+		rooneyStart();
     } else if(keyCode == 40) { //down arrow
     	kickGoal();
+    	rooneyStart();
     }
 }
 
-
-
 //keeper variables
 var keeper;
-var keeperWidth=100;
+var keeperWidth=120;
 
 var goalWidth;
 var leftMovePixels=1;
@@ -52,6 +52,13 @@ var topStopPoint = goalTop;
 
 var arrowImage;
 
+// Scoring
+var computerScore = 0;
+var playerScore = 0;
+var computerScoreDiv;
+var playerScoreDiv;
+
+var rooneyTakingPenalty;
 
 function setup() {
 
@@ -72,9 +79,18 @@ function setupVariables() {
 	rooneyKick = $("#rooneyKick");
 	arrowImage = $("#arrowImage");
 	rooneyFly = $("#rooneyCelebrate");
+	computerScoreDiv = $("#computerScore");
+	playerScoreDiv = $("#playerScore");
 }
 
 function commenceGame() {
+	rooney.css('display', 'block');
+	rooneyKick.hide();
+	rooneyFly.hide();
+	
+	rooneyKicking = false;
+	
+	penaltySetup();
 	setupHtmlPositions();
 	startKeeper();
 }
@@ -84,7 +100,7 @@ function setupHtmlPositions() {
 	keeper.css('top','0px');
 	keeper.css('left','0px');
 	ball.css('left','175px');
-	
+
 	rooneyFly.css('left', '50%');
 	rooneyFly.css('top',rooney.css('top'));
 	
@@ -98,7 +114,7 @@ function startKeeper() {
 
 function moveKeeper() {
 	var currentPosition = parseInt(keeper.css('left'));
-	console.log(currentPosition);
+//	console.log(currentPosition);
 	// new after show problem
 	var maxRightPosition = goalWidth - keeperWidth;
 	
@@ -137,10 +153,12 @@ function jumpKeeper() {
 }
 
 function rooneyStart() {
-	rooney.css('display', 'block');
 	
-	penaltySetup();
-	rooneyRun();
+	if(!rooneyKicking) {
+		rooneyKicking = true;
+		rooney.css('display', 'block');
+		rooneyRun();
+	}
 }
 
 function penaltySetup() {
@@ -215,9 +233,26 @@ function save() {
 		rooneyKick.hide();
 		rooneyCelebrate();
 		
+		if ( isGoal() ) {
+			playerScore = playerScore + 3;  // playerScore += 3;
+		} else {
+			playerScore = playerScore + 1;	// playerScore += 1;
+		}
+		
 	} else {
-		alert('Saved');
+		if ( isGoal() ) {
+			computerScore = computerScore + 3;
+		} else {
+			computerScore = computerScore + 1;
+		}
 	}
+	updateScores();
+	setTimeout(commenceGame,2000);
+}
+
+function updateScores() {
+	computerScoreDiv.html(computerScore);
+	playerScoreDiv.html(playerScore);
 }
 
 function isScored(keeperLeft, keeperRight, 
@@ -275,11 +310,21 @@ function rooneyCelebrate() {
 	fly();
 }
 
+function isGoal() {
+	if (topStopPoint == goalTop) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 function fly() {
 	var rooneyFlyLeft = parseInt(rooneyFly.css('left'));
-	if(rooneyFlyLeft != 0) {
+	if(rooneyFlyLeft > 0) {
 		var newRooneyFlyLeft = rooneyFlyLeft - 5;
 		rooneyFly.css('left', newRooneyFlyLeft+'px');
 		setTimeout(fly, 2);
+	} else {
+		rooneyFly.hide();
 	}
 }

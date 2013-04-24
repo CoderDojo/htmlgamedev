@@ -80,6 +80,7 @@ div#ball {
 	position: absolute;
 	top: 500px;
 	width: 50px;
+	z-index: 100;
 }
 
 img {
@@ -114,30 +115,29 @@ div#rooneyCelebrate {
 	position: absolute;
 }
 
-
-
-#computerScoreDiv{
-	left: 20px;
-	text-align: center;
+div#computerScoreDiv
+{
+    left: 20px;
+    text-align: center;
 }
 
-#playerScoreDiv
+div#playerScoreDiv
 {
-	right: 20px;
-	text-align: center;
+    right: 20px;
+    text-align: center;
 }
 
 #computerScoreDiv,#playerScoreDiv
 {
-	position: absolute;
-	bottom: 20px;
-	color: #FFF;
-	width: 200px;
-	opacity: .8;
-	font-size: 100px
+    position: absolute;
+    bottom: 20px;
+    color: #FFF;
+    width: 200px;
+    opacity: .8;
+    font-size: 100px;
 }
 
 h3 {
-	margin: 0px;
-	font-size: 25px;
+    margin: 0px;
+    font-size: 25px;
 }
