@@ -240,8 +240,9 @@ function save() {
 	if (isScored(keeperLeft, keeperRight, 
 		ballLeft, ballRight, keeperTop, keeperBottom,
 		ballTop, ballBottom)) {
-		
+			
 		rooneyKick.hide();
+		playGoal();	
 		rooneyCelebrate();
 		
 		if ( isGoal() ) {
@@ -345,4 +346,9 @@ function changeBallDirection(moveAmountValue, imageUrl) {
 		moveLeftAmount = moveAmountValue;
 	   	arrowDirectionImage.attr('src', imageUrl);
 	}
+}
+
+function playGoal() {
+		var audio = "<audio style='display: none' autoplay><source src='gooooaal.wav' type='audio/wav'/></audio>";
+		$("body").append(audio);
 }
