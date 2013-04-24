@@ -14,9 +14,13 @@ function handleKey(e) {
 
     if(keyCode == 32) { //space
     	rooneyStart();
+    } else if(keyCode == 37) {
+    	changeBallDirection(-4, 'arrowleft.png');
     } else if(keyCode == 38) { // up arrow
 		kickPoint();
 		rooneyStart();
+    } else if(keyCode == 39) {
+    	changeBallDirection(3, 'arrowright.png');
     } else if(keyCode == 40) { //down arrow
     	kickGoal();
     	rooneyStart();
@@ -31,6 +35,7 @@ var goalWidth;
 var leftMovePixels=1;
 
 var moveAmount = 5;
+var moveLeftAmount = 0;
 
 var jumpSequence = 40;
 var currentJumpSequence = 1;
@@ -51,6 +56,7 @@ var pointTop = 20;
 var topStopPoint = goalTop;
 
 var arrowImage;
+var arrowDirectionImage;
 
 // Scoring
 var computerScore = 0;
@@ -78,6 +84,7 @@ function setupVariables() {
 	
 	rooneyKick = $("#rooneyKick");
 	arrowImage = $("#arrowImage");
+	arrowDirectionImage = $("#arrowDirectionImage");
 	rooneyFly = $("#rooneyCelebrate");
 	computerScoreDiv = $("#computerScore");
 	playerScoreDiv = $("#playerScore");
@@ -194,7 +201,11 @@ function moveBall() {
 	var currentBallTop = parseInt(ball.css('top'));
 	var newBallTop = currentBallTop - 10;
 	
+	var currentBallLeft = parseInt(ball.css('left'));
+	var newBallLeft = currentBallLeft+moveLeftAmount;
+	
 	ball.css('top', newBallTop + 'px');
+	ball.css('left', newBallLeft + 'px');
 	
 	if(newBallTop > topStopPoint) {
 		setTimeout(moveBall, 20);
@@ -326,5 +337,12 @@ function fly() {
 		setTimeout(fly, 2);
 	} else {
 		rooneyFly.hide();
+	}
+}
+
+function changeBallDirection(moveAmountValue, imageUrl) {
+	if(!rooneyKicking) {
+		moveLeftAmount = moveAmountValue;
+	   	arrowDirectionImage.attr('src', imageUrl);
 	}
 }
