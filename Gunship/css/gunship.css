@@ -1,0 +1,8 @@
+#gameDiv {
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 512px;
+	height: 480px;
+	border: 2px solid gray;
+}
