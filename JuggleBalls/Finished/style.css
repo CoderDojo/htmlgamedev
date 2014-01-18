@@ -1,0 +1,20 @@
+#ballDiv {
+	position: absolute;
+}
+
+.ball-class {
+    position: absolute;
+}
+
+#ballLocation {
+	width: 5%;
+	height: 20pt;
+	border: 1px solid black;
+	float: right;
+}
+
+#ballBox {
+	width: 70%;
+	height: 90%;
+	border: 1px solid green;
+}
